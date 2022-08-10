@@ -1,5 +1,5 @@
 {
-  "name": "project-name",
+  "name": "@carpenjk/searchbar",
   "version": "1.0.0",
   "description": "This a description",
   "main": "lib/index.js",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/carpenjk/project-name.git"
+    "url": "git+https://github.com/carpenjk/searchbar.git"
   },
   "keywords": [
     "keyword1",
@@ -20,9 +20,9 @@
   "author": "Jeremy Carpenter",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/carpenjk/project-name/issues"
+    "url": "https://github.com/carpenjk/searchbar/issues"
   },
-  "homepage": "https://github.com/carpenjk/project-name#readme",
+  "homepage": "https://github.com/carpenjk/searchbar#readme",
   "devDependencies": {
     "@babel/cli": "^7.18.10",
     "@babel/core": "^7.18.10",
