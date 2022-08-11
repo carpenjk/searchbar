@@ -1,6 +1,6 @@
 import React from 'react'
 import { Formik } from 'formik'
-import { SearchBarInnerProvider } from './searchBarContext'
+import { SearchBarInnerProvider } from './SearchBarContext'
 
 const SearchBarProvider = (props) => {
   const {
