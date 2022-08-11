@@ -5,7 +5,7 @@ import { SearchBarInnerProvider } from './searchBarContext'
 const SearchBarProvider = (props) => {
   const {
     initialValues,
-    schema,
+    validationSchema,
     search,
     onSubmit,
     children,
@@ -21,7 +21,7 @@ const SearchBarProvider = (props) => {
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={schema}
+      validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
       <SearchBarInnerProvider search={search} {...options}>
