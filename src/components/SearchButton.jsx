@@ -135,7 +135,7 @@ const DEFAULT_TW = {
   semKey: 'button'
 }
 
-const ActionButton = ({ tw, variant, children, isActive, ...rest }) => {
+const ActionButton = ({ tw, variant, isActive, ...rest }) => {
   const mergedTw = { ...DEFAULT_TW, ...tw }
   return (
     <StyledButton
@@ -145,7 +145,7 @@ const ActionButton = ({ tw, variant, children, isActive, ...rest }) => {
       {...rest}
       semKey={`button.${variant}`}
     >
-      {children}
+      Search
     </StyledButton>
   )
 }
