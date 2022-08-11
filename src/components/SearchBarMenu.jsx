@@ -172,7 +172,7 @@ const SearchBarMenu = (props) => {
               />
             )}
             {allOpenMode && <div />}
-            <SearchButton type="submit" onClick={close} />
+            <SearchButton tw={{ variant: 'search' }} type="submit" onClick={close} />
           </ButtonContainer>
         </SearchBarContainer>
       </Form>
