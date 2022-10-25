@@ -31,11 +31,12 @@ const SearchBarInnerProvider = ({
   const [currentInputElement, setCurrentInputElement] = useState()
 
   console.log('🚀 ~ file: SearchBarContext.jsx ~ line 34 ~ options', options)
-  // const { secondaryOpenBreakpoint = 1 } = options || {}
-  // console.log('🚀 ~ file: SearchBarContext.jsx ~ line 34 ~ secondaryOpenBreakpoint', secondaryOpenBreakpoint)
+  const { secondaryOpenBreakpoint = 1 } = options || {}
+  console.log('🚀 ~ file: SearchBarContext.jsx ~ line 34 ~ secondaryOpenBreakpoint', secondaryOpenBreakpoint)
 
-  const breakpoints = useBreakpoints(theme.breakpoints)
-  const isSecondaryWidth = breakpoints.current.width >= breakpoints.br[1]
+  // const breakpoints = useBreakpoints(theme.breakpoints)
+  // const isSecondaryWidth = breakpoints.current.width >= breakpoints.br[1]
+  const isSecondaryWidth = true
 
   const openCloseStateSetters = useMemo(
     () => ({
