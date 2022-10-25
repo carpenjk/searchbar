@@ -7,7 +7,8 @@
     "prebuild": "rimraf lib",
     "build": "babel src -d lib",
     "prepublish": "npm run build",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "release": "standard-version"
   },
   "repository": {
     "type": "git",
@@ -35,12 +36,13 @@
     "eslint-plugin-n": "^15.2.4",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.30.1",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "standard-version": "^9.5.0"
   },
   "peerDependencies": {
-    "@carpenjk/prop-x": "^2.0.2",
     "@carpenjk/hooks": "git+https://git@github.com/carpenjk/hooks.git",
     "@carpenjk/popup-modal": "github:carpenjk/popup-modal",
+    "@carpenjk/prop-x": "^2.0.2",
     "formik": "^2.2.9",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
