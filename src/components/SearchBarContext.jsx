@@ -31,6 +31,7 @@ const SearchBarInnerProvider = ({
   const [currentInputElement, setCurrentInputElement] = useState()
 
   const { secondaryOpenBreakpoint = 1 } = options || {}
+  console.log('🚀 ~ file: SearchBarContext.jsx ~ line 34 ~ secondaryOpenBreakpoint', secondaryOpenBreakpoint)
 
   const breakpoints = useBreakpoints(theme.breakpoints)
   const isSecondaryWidth = breakpoints.current.width >= breakpoints.br[secondaryOpenBreakpoint]
