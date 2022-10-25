@@ -30,6 +30,7 @@ const SearchBarInnerProvider = ({
   const [isSearchBarFocused, setIsSearchBarFocused] = useState(false)
   const [currentInputElement, setCurrentInputElement] = useState()
 
+  console.log('🚀 ~ file: SearchBarContext.jsx ~ line 34 ~ options', options)
   const { secondaryOpenBreakpoint = 1 } = options || {}
   console.log('🚀 ~ file: SearchBarContext.jsx ~ line 34 ~ secondaryOpenBreakpoint', secondaryOpenBreakpoint)
 
