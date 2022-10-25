@@ -2,7 +2,7 @@ import React from 'react'
 import FiltersContainer from './FiltersContainer'
 
 const SearchFilters = (props) => {
-  const { isScrollable, checkFilters, FilterFields, isFiltersOpen } = props
+  const { isScrollable, FilterFields, isFiltersOpen } = props
   //* context *********************************************************
 
   return (
@@ -11,7 +11,7 @@ const SearchFilters = (props) => {
       isScrollable={isScrollable}
       className={`searchFilters ${isFiltersOpen ? 'searchFiltersOpen' : ''}`}
     >
-      <FilterFields checkFilters={checkFilters} />
+      <FilterFields />
     </FiltersContainer>
   )
 }
