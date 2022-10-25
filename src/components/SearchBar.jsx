@@ -12,16 +12,19 @@ const SearchBar = ({
   theme,
   options,
   ...props
-}) => (
-  <Formik
-    initialValues={initialValues}
-    validationSchema={validationSchema}
-    onSubmit={search}
-  >
-    <SearchBarInnerProvider allOpenMode={allOpenMode} search={search} options={options} theme={theme}>
-      <SearchBarMenu {...props} />
-    </SearchBarInnerProvider>
-  </Formik>
-)
+}) => {
+  console.log('🚀 ~ file: SearchBar.jsx ~ line 16 ~ options', options)
+  return (
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={search}
+      >
+        <SearchBarInnerProvider allOpenMode={allOpenMode} search={search} options={options} theme={theme}>
+          <SearchBarMenu {...props} />
+        </SearchBarInnerProvider>
+      </Formik>
+  )
+}
 
 export default SearchBar
