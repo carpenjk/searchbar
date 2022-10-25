@@ -38,9 +38,9 @@
     "rimraf": "^3.0.2"
   },
   "peerDependencies": {
-    "@carpenjk/popup-modal": "github:carpenjk/popup-modal",
+    "@carpenjk/prop-x": "^2.0.2",
     "@carpenjk/hooks": "git+https://git@github.com/carpenjk/hooks.git",
-    "@carpenjk/prop-x": "git+https://git@github.com/carpenjk/prop-x.git",
+    "@carpenjk/popup-modal": "github:carpenjk/popup-modal",
     "formik": "^2.2.9",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
