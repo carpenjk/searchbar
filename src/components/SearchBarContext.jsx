@@ -30,7 +30,7 @@ const SearchBarInnerProvider = ({
   const [isSearchBarFocused, setIsSearchBarFocused] = useState(false)
   const [currentInputElement, setCurrentInputElement] = useState()
 
-  const { secondaryOpenBreakpoint = 1 } = options
+  const { secondaryOpenBreakpoint = 1 } = options || {}
 
   const breakpoints = useBreakpoints(theme.breakpoints)
   const isSecondaryWidth = breakpoints.current.width >= breakpoints.br[secondaryOpenBreakpoint]
