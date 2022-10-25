@@ -1,11 +1,9 @@
 import React, {
   useState,
   useEffect,
-  useContext,
   useCallback,
   useMemo
 } from 'react'
-import { ThemeContext } from 'styled-components'
 import { useBreakpoints } from '@carpenjk/prop-x/useBreakpoints'
 import { useFormikContext } from 'formik'
 import { useIsoLayoutEffect } from '@carpenjk/hooks'
@@ -18,7 +16,8 @@ const SearchBarInnerProvider = ({
   allOpenMode,
   hideOnOpen,
   onExit,
-  search
+  search,
+  options
 }) => {
   const { values } = useFormikContext()
   const [isStarted, setIsStarted] = useState(false)
@@ -30,8 +29,10 @@ const SearchBarInnerProvider = ({
   const [isSearchBarFocused, setIsSearchBarFocused] = useState(false)
   const [currentInputElement, setCurrentInputElement] = useState()
 
-  const theme = useContext(ThemeContext)
-  const br = useBreakpoints(theme)
+  const { secondaryOpenWidth = 880 } = options
+
+  const breakpoints = useBreakpoints({ breakpoints: [secondaryOpenWidth] })
+  const isSecondaryWidth = breakpoints.current.width >= secondaryOpenWidth
 
   const openCloseStateSetters = useMemo(
     () => ({
@@ -41,7 +42,7 @@ const SearchBarInnerProvider = ({
         filters: setIsFiltersOpen
       },
       default:
-        br.current.width < br.br[1]
+        !isSecondaryWidth
           ? { secondary: setIsSecondaryOpen, filters: setIsFiltersOpen }
           : { filters: setIsFiltersOpen },
       manual: {
@@ -50,7 +51,7 @@ const SearchBarInnerProvider = ({
         filters: setIsFiltersOpen
       }
     }),
-    [br, setIsFiltersOpen, setIsSecondaryOpen, setIsPrimaryOpen]
+    [breakpoints, setIsFiltersOpen, setIsSecondaryOpen, setIsPrimaryOpen]
   )
 
   const setFromObj = useCallback(
@@ -155,6 +156,7 @@ const SearchBarInnerProvider = ({
         },
         searchState: {
           allOpenMode,
+          breakpoints,
           isOpen,
           isHidden,
           isPrimaryOpen,
@@ -167,6 +169,8 @@ const SearchBarInnerProvider = ({
           isSearchBarFocused,
           setIsSearchBarFocused,
           currentInputElement,
+          isSecondaryWidth,
+          options,
           setCurrentInputElement,
           values,
           onExit: handleExit

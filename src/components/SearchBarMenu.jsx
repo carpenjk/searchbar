@@ -1,8 +1,6 @@
 // hooks
 import React, { useContext, useEffect, useRef } from 'react'
 import { Form, useFormikContext } from 'formik'
-import { ThemeContext } from 'styled-components'
-import { useBreakpoints } from '@carpenjk/prop-x/useBreakpoints'
 import { useIsoOnClickOutside } from '@carpenjk/hooks'
 import { SearchBarContext } from './SearchBarContext'
 
@@ -48,11 +46,10 @@ const SearchBarMenu = (props) => {
     isSearchBarFocused,
     setIsSearchBarFocused,
     currentInputElement,
-    setCurrentInputElement
+    setCurrentInputElement,
+    isSecondaryWidth
   } = searchState
 
-  const theme = useContext(ThemeContext)
-  const br = useBreakpoints(theme)
   const formik = useFormikContext()
   const { values } = formik
 
@@ -95,7 +92,7 @@ const SearchBarMenu = (props) => {
     if (allOpenMode) {
       return true
     }
-    return br.current.width > br.br[1]
+    return isSecondaryWidth
       ? isSearchBarFocused || isStarted
       : isSecondaryOpen
   }
