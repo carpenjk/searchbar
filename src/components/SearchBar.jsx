@@ -13,7 +13,6 @@ const SearchBar = ({
   options,
   ...props
 }) => {
-  console.log('🚀 ~ file: SearchBar.jsx ~ line 16 ~ options', options)
   return (
       <Formik
         initialValues={initialValues}
