@@ -34,6 +34,7 @@ const SearchBarMenu = (props) => {
   //* context *********************************************************
 
   const { control, searchState } = useContext(SearchBarContext)
+  console.log('🚀 ~ file: SearchBarMenu.jsx ~ line 37 ~ SearchBarMenu ~ searchState', searchState)
   const { open } = control
   const {
     allOpenMode,
