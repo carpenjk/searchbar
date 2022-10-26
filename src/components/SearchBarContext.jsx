@@ -179,6 +179,7 @@ const SearchBarInnerProvider = ({
           options,
           setCurrentInputElement,
           values,
+          isFieldsWrapped: breakpoints.current.width < breakpoints.br[breakpointToWrap],
           openOnMount,
           hideOnMount,
           secondaryOpenBreakpoint,
