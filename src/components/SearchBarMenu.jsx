@@ -45,7 +45,6 @@ const SearchBarMenu = (props) => {
     setIsFiltersOpen,
     isSearchBarFocused,
     setIsSearchBarFocused,
-    currentInputElement,
     setCurrentInputElement,
     isSecondaryWidth
   } = searchState
@@ -135,18 +134,15 @@ const SearchBarMenu = (props) => {
                   inputRefs={visibleInputRefs}
                   onInputFocus={handleFocus}
                   searchBarRef={searchBarRef}
-                  isSearchBarFocused={isSearchBarFocused}
-                  currentInputElement={currentInputElement}
-                  values={values}
+                  {...searchState}
                 />
               </InputGroup>
               <InputGroup hide={[!isSecondaryOpen, false]}>
                 <SecondarySearchFields
-                  isSearchBarFocused={isSearchBarFocused}
                   inputRefs={secondaryInputRefs}
                   onInputFocus={handleFocus}
                   searchBarRef={searchBarRef}
-                  values={values}
+                  {...searchState}
                 />
               </InputGroup>
             </SearchFieldsContainer>
@@ -154,7 +150,7 @@ const SearchBarMenu = (props) => {
               FilterFields={FilterFields}
               checkFilters={checkFilters}
               isScrollable={[false, true]}
-              isFiltersOpen={isFiltersOpen}
+              {...searchState}
             />
           </MenuContainer>
           <ButtonContainer
