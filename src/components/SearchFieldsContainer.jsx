@@ -8,13 +8,13 @@ const StyledSearchFields = styled.div`
   ${condition('isSearchFiltersOpen')`
     margin-bottom: 20px;
   `}
-  ${breakpoint(1)`
+  ${props => breakpoint(props.breakpointToWrap)`
     flex-direction: row;
   `}
 `
 
-const SearchFieldsContainer = ({ isFiltersOpen, children }) => (
-  <StyledSearchFields isSearchFiltersOpen={isFiltersOpen}>
+const SearchFieldsContainer = ({ breakpointToWrap, isFiltersOpen, children }) => (
+  <StyledSearchFields breakpointToWrap={breakpointToWrap} isSearchFiltersOpen={isFiltersOpen}>
     {children}
   </StyledSearchFields>
 )

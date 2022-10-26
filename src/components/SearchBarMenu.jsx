@@ -47,7 +47,8 @@ const SearchBarMenu = (props) => {
     setIsSearchBarFocused,
     setCurrentInputElement,
     isSecondaryWidth,
-    hideOnSearch
+    hideOnSearch,
+    breakpointToWrap
   } = searchState
 
   //* Dom References ***********************************************
@@ -126,7 +127,7 @@ const SearchBarMenu = (props) => {
             isFiltersOpen={isFiltersOpen}
             isSearchBarFocused={isSearchBarFocused}
           >
-            <SearchFieldsContainer isFiltersOpen={isFiltersOpen}>
+            <SearchFieldsContainer breakpointToWrap={breakpointToWrap} isFiltersOpen={isFiltersOpen}>
               <InputGroup hide={false}>
                 <PrimarySearchFields
                   inputRefs={visibleInputRefs}

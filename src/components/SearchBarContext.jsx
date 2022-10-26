@@ -23,7 +23,8 @@ const SearchBarInnerProvider = ({
     allOpenMode = false,
     hideOnMount = false,
     secondaryOpenBreakpoint = 1,
-    hideOnSearch
+    hideOnSearch,
+    breakpointToWrap = 1
   } = options || {}
   const breakpoints = useBreakpoints(theme.breakpoints)
   const isSecondaryWidth = breakpoints.current.width >= breakpoints.br[secondaryOpenBreakpoint]
@@ -182,6 +183,7 @@ const SearchBarInnerProvider = ({
           hideOnMount,
           secondaryOpenBreakpoint,
           hideOnSearch,
+          breakpointToWrap,
           onExit: handleExit
         }
       }}
