@@ -31,8 +31,8 @@ const SearchBarInnerProvider = ({
   const [isOpen, setIsOpen] = useState(false)
   const [isHidden, setIsHidden] = useState(hideOnOpen || false)
   const [isPrimaryOpen, setIsPrimaryOpen] = useState(true)
-  const [isSecondaryOpen, setIsSecondaryOpen] = useState(allOpenMode || false)
-  const [isFiltersOpen, setIsFiltersOpen] = useState(allOpenMode || isSecondaryWidth || false)
+  const [isSecondaryOpen, setIsSecondaryOpen] = useState(allOpenMode || isSecondaryWidth || false)
+  const [isFiltersOpen, setIsFiltersOpen] = useState(allOpenMode || false)
   const [isSearchBarFocused, setIsSearchBarFocused] = useState(false)
   const [currentInputElement, setCurrentInputElement] = useState()
 
