@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { breakpoint, condition } from '@carpenjk/prop-x/css'
 
-const StyledSearchFilter = styled.ul`
+const StyledSearchFilter = styled.div`
   display: none;
   ${condition('isSearchFiltersOpen')`
     display: flex;
