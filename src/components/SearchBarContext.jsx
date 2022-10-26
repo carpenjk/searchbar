@@ -20,20 +20,21 @@ const SearchBarInnerProvider = ({
   theme,
   options
 }) => {
+  // options
+  const { secondaryOpenBreakpoint = 1 } = options || {}
+  const breakpoints = useBreakpoints(theme.breakpoints)
+  const isSecondaryWidth = breakpoints.current.width >= breakpoints.br[secondaryOpenBreakpoint]
+
+  // state
   const { values } = useFormikContext()
   const [isStarted, setIsStarted] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const [isHidden, setIsHidden] = useState(hideOnOpen || false)
   const [isPrimaryOpen, setIsPrimaryOpen] = useState(true)
   const [isSecondaryOpen, setIsSecondaryOpen] = useState(allOpenMode || false)
-  const [isFiltersOpen, setIsFiltersOpen] = useState(allOpenMode || false)
+  const [isFiltersOpen, setIsFiltersOpen] = useState(allOpenMode || isSecondaryWidth || false)
   const [isSearchBarFocused, setIsSearchBarFocused] = useState(false)
   const [currentInputElement, setCurrentInputElement] = useState()
-
-  const { secondaryOpenBreakpoint = 1 } = options || {}
-
-  const breakpoints = useBreakpoints(theme.breakpoints)
-  const isSecondaryWidth = breakpoints.current.width >= breakpoints.br[secondaryOpenBreakpoint]
 
   const openCloseStateSetters = useMemo(
     () => ({
