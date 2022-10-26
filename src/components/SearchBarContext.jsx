@@ -12,16 +12,19 @@ const SearchBarContext = React.createContext()
 
 const SearchBarInnerProvider = ({
   children,
-  openOnMount,
-  allOpenMode,
-  hideOnOpen,
   onExit,
   search,
   theme,
   options
 }) => {
   // options
-  const { secondaryOpenBreakpoint = 1 } = options || {}
+  const {
+    openOnMount = false,
+    allOpenMode = false,
+    hideOnMount = false,
+    secondaryOpenBreakpoint = 1,
+    hideOnSearch
+  } = options || {}
   const breakpoints = useBreakpoints(theme.breakpoints)
   const isSecondaryWidth = breakpoints.current.width >= breakpoints.br[secondaryOpenBreakpoint]
 
@@ -29,7 +32,7 @@ const SearchBarInnerProvider = ({
   const { values } = useFormikContext()
   const [isStarted, setIsStarted] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
-  const [isHidden, setIsHidden] = useState(hideOnOpen || false)
+  const [isHidden, setIsHidden] = useState(hideOnMount || false)
   const [isPrimaryOpen, setIsPrimaryOpen] = useState(true)
   const [isSecondaryOpen, setIsSecondaryOpen] = useState(allOpenMode || isSecondaryWidth || false)
   const [isFiltersOpen, setIsFiltersOpen] = useState(allOpenMode || false)
@@ -175,6 +178,10 @@ const SearchBarInnerProvider = ({
           options,
           setCurrentInputElement,
           values,
+          openOnMount,
+          hideOnMount,
+          secondaryOpenBreakpoint,
+          hideOnSearch,
           onExit: handleExit
         }
       }}

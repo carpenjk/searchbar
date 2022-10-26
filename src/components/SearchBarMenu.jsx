@@ -1,6 +1,6 @@
 // hooks
 import React, { useContext, useEffect, useRef } from 'react'
-import { Form, useFormikContext } from 'formik'
+import { Form } from 'formik'
 import { useIsoOnClickOutside } from '@carpenjk/hooks'
 import { SearchBarContext } from './SearchBarContext'
 
@@ -46,11 +46,9 @@ const SearchBarMenu = (props) => {
     isSearchBarFocused,
     setIsSearchBarFocused,
     setCurrentInputElement,
-    isSecondaryWidth
+    isSecondaryWidth,
+    hideOnSearch
   } = searchState
-
-  const formik = useFormikContext()
-  const { values } = formik
 
   //* Dom References ***********************************************
   const searchBarRef = useRef(null)
@@ -165,7 +163,7 @@ const SearchBarMenu = (props) => {
               />
             )}
             {allOpenMode && <div />}
-            <SearchButton tw={{ variant: 'search' }} type="submit" onClick={close} />
+            <SearchButton tw={{ variant: 'search' }} type="submit" onClick={hideOnSearch ? close : undefined} />
           </ButtonContainer>
         </SearchBarContainer>
       </Form>
