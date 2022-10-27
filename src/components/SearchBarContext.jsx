@@ -154,7 +154,7 @@ const SearchBarInnerProvider = ({
     }
   }, [openOnMount, open])
 
-  useEffect(() => {
+  useIsoLayoutEffect(() => {
     setIsSecondaryOpen(isSecondaryWidth)
   }, [isSecondaryWidth])
 
