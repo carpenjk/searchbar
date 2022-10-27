@@ -7,7 +7,6 @@ import React, {
 import { useBreakpoints } from '@carpenjk/prop-x/useBreakpoints'
 import { useFormikContext } from 'formik'
 import { useIsoLayoutEffect } from '@carpenjk/hooks'
-import { getIndexedPropValue } from '@carpenjk/prop-x'
 
 const SearchBarContext = React.createContext()
 

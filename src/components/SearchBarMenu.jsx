@@ -110,8 +110,11 @@ const SearchBarMenu = (props) => {
 
   useEffect(() => {
     const brAlwaysShowButtons = getIndexedPropValue(alwaysShowButtons, breakpoints.indexOfLower)
+    console.log('🚀 ~ file: SearchBarMenu.jsx ~ line 113 ~ useEffect ~ brAlwaysShowButtons', brAlwaysShowButtons)
     const brAllOpenMode = getIndexedPropValue(allOpenMode, breakpoints.indexOfLower)
+    console.log('🚀 ~ file: SearchBarMenu.jsx ~ line 115 ~ useEffect ~ brAllOpenMode', brAllOpenMode)
     const brKeepButtonsWhenStarted = getIndexedPropValue(keepButtonsWhenStarted, breakpoints.indexOfLower)
+    console.log('🚀 ~ file: SearchBarMenu.jsx ~ line 117 ~ useEffect ~ brKeepButtonsWhenStarted', brKeepButtonsWhenStarted)
     if (brAlwaysShowButtons || brAllOpenMode || isOpen) {
       setShowButtons(true)
       return
