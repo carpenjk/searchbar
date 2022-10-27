@@ -68,6 +68,9 @@ const SearchBarMenu = (props) => {
   const searchBarOffsetTop = offsetTop || DEFAULT_OFFSET_TOP_PX
 
   useEffect(() => {
+    console.log('menu mount')
+  }, [])
+  useEffect(() => {
     if (allOpenMode) {
       open()
     }
@@ -102,9 +105,6 @@ const SearchBarMenu = (props) => {
     const brAlwaysShowButtons = getIndexedPropValue(alwaysShowButtons, breakpoints.indexOfLower)
     const brAllOpenMode = getIndexedPropValue(allOpenMode, breakpoints.indexOfLower)
     const brKeepButtonsWhenStarted = getIndexedPropValue(keepButtonsWhenStarted, breakpoints.indexOfLower)
-    console.log('🚀 ~ file: SearchBarMenu.jsx ~ line 115 ~ useEffect ~ brAllOpenMode', brAllOpenMode)
-    console.log('🚀 ~ file: SearchBarMenu.jsx ~ line 113 ~ useEffect ~ brAlwaysShowButtons', brAlwaysShowButtons)
-    console.log('🚀 ~ file: SearchBarMenu.jsx ~ line 117 ~ useEffect ~ brKeepButtonsWhenStarted', brKeepButtonsWhenStarted)
     if (brAlwaysShowButtons || brAllOpenMode || isOpen) {
       setShowButtons(true)
       return
