@@ -1,5 +1,5 @@
 // hooks
-import React, { useContext, useEffect, useRef } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Form } from 'formik'
 import { useIsoOnClickOutside } from '@carpenjk/hooks'
 import { SearchBarContext } from './SearchBarContext'
@@ -37,6 +37,7 @@ const SearchBarMenu = (props) => {
   const { open } = control
   const {
     allOpenMode,
+    alwaysShowButtons,
     isOpen,
     isHidden,
     isStarted,
@@ -48,6 +49,7 @@ const SearchBarMenu = (props) => {
     setCurrentInputElement,
     isSecondaryWidth,
     hideOnSearch,
+    keepButtonsWhenStarted,
     keepOpenOnSearch,
     breakpointToWrap
   } = searchState
@@ -57,6 +59,9 @@ const SearchBarMenu = (props) => {
   const searchBarBgRef = useRef(null)
   const visibleInputRefs = useRef([])
   const secondaryInputRefs = useRef([])
+
+  //* state ********************************************************
+  const [showButtons, setShowButtons] = useState(false)
 
   //* variables ****************************************************
   const searchBarOffsetTop = offsetTop || DEFAULT_OFFSET_TOP_PX
@@ -100,12 +105,22 @@ const SearchBarMenu = (props) => {
       ? isSearchBarFocused || isStarted
       : isSecondaryOpen
   }
-  function getShowButtons () {
+
+  useEffect(() => {
     if (allOpenMode) {
-      return true
+      setShowButtons(true)
+      return
     }
-    return [isSearchBarFocused, isSearchBarFocused || isStarted]
-  }
+
+    if (isOpen) {
+      setShowButtons(true)
+      return
+    }
+    setShowButtons(alwaysShowButtons ||
+      isSearchBarFocused ||
+      (keepButtonsWhenStarted && isStarted)
+    )
+  }, [alwaysShowButtons, allOpenMode, isOpen, isSearchBarFocused, isStarted, keepButtonsWhenStarted])
 
   //* hooks/lifecycle
   useIsoOnClickOutside(searchBarRef, onClickOutsideEffect, [isStarted])
@@ -159,7 +174,7 @@ const SearchBarMenu = (props) => {
             />
           </MenuContainer>
           <ButtonContainer
-            isDisplayed={getShowButtons()}
+            isDisplayed={showButtons}
             isFiltersOpen={isFiltersOpen}
           >
             {!allOpenMode && (
