@@ -7,6 +7,7 @@ import React, {
 import { useBreakpoints } from '@carpenjk/prop-x/useBreakpoints'
 import { useFormikContext } from 'formik'
 import { useIsoLayoutEffect } from '@carpenjk/hooks'
+import { getIndexedPropValue } from '@carpenjk/prop-x'
 
 const SearchBarContext = React.createContext()
 
@@ -19,15 +20,15 @@ const SearchBarInnerProvider = ({
 }) => {
   // options
   const {
-    openOnMount = false,
     allOpenMode = false,
     alwaysShowButtons = true,
+    breakpointToWrap = 1,
     hideOnMount = false,
-    secondaryOpenBreakpoint = 1,
     hideOnSearch,
-    keepButtonsWhenStarted,
-    keepOpenOnSearch,
-    breakpointToWrap = 1
+    keepButtonsWhenStarted = false,
+    keepOpenOnSearch = false,
+    openOnMount = false,
+    secondaryOpenBreakpoint = 1
   } = options || {}
 
   const breakpoints = useBreakpoints(theme.breakpoints)

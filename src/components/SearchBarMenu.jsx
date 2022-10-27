@@ -1,6 +1,7 @@
 // hooks
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Form } from 'formik'
+import { getIndexedPropValue } from '@carpenjk/prop-x'
 import { useIsoOnClickOutside } from '@carpenjk/hooks'
 import { SearchBarContext } from './SearchBarContext'
 
@@ -38,6 +39,7 @@ const SearchBarMenu = (props) => {
   const {
     allOpenMode,
     alwaysShowButtons,
+    breakpoints,
     isOpen,
     isHidden,
     isStarted,
@@ -107,18 +109,15 @@ const SearchBarMenu = (props) => {
   }
 
   useEffect(() => {
-    if (allOpenMode) {
+    const brAlwaysShowButtons = getIndexedPropValue(alwaysShowButtons, breakpoints.indexOfLower)
+    const brAllOpenMode = getIndexedPropValue(allOpenMode, breakpoints.indexOfLower)
+    const brKeepButtonsWhenStarted = getIndexedPropValue(keepButtonsWhenStarted, breakpoints.indexOfLower)
+    if (brAlwaysShowButtons || brAllOpenMode || isOpen) {
       setShowButtons(true)
       return
     }
-
-    if (isOpen) {
-      setShowButtons(true)
-      return
-    }
-    setShowButtons(alwaysShowButtons ||
-      isSearchBarFocused ||
-      (keepButtonsWhenStarted && isStarted)
+    setShowButtons(isSearchBarFocused ||
+      (brKeepButtonsWhenStarted && isStarted)
     )
   }, [alwaysShowButtons, allOpenMode, isOpen, isSearchBarFocused, isStarted, keepButtonsWhenStarted])
 
@@ -128,7 +127,6 @@ const SearchBarMenu = (props) => {
   return (
     <>
       {isOpen && !isHidden && <PopupModal isOpen={isOpen} lockScroll />}
-      {/* <PopupModal isOpen={isOpen} lockScroll /> */}
       <Form autoComplete="off">
         <SearchBarContainer
           isHidden={isHidden}
