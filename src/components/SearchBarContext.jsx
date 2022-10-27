@@ -156,7 +156,7 @@ const SearchBarInnerProvider = ({
     }
   }, [openOnMount, open])
 
-  useEffect(() => {
+  useIsoLayoutEffect(() => {
     const brAlwaysShowButtons = getIndexedPropValue(alwaysShowButtons, breakpoints.indexOfLower)
     const brAllOpenMode = getIndexedPropValue(allOpenMode, breakpoints.indexOfLower)
     const brKeepButtonsWhenStarted = getIndexedPropValue(keepButtonsWhenStarted, breakpoints.indexOfLower)
