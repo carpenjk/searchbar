@@ -7,22 +7,14 @@ const SearchBarProvider = (props) => {
     initialValues,
     validationSchema,
     search,
-    onSubmit,
     children,
     options
   } = props
-  function handleSubmit (data) {
-    if (onSubmit) {
-      onSubmit(data)
-    } else {
-      search(data)
-    }
-  }
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={handleSubmit}
+      onSubmit={search}
     >
       <SearchBarInnerProvider search={search} options={options}>
         {children}

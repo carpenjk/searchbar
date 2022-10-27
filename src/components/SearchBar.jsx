@@ -5,7 +5,6 @@ import { SearchBarInnerProvider } from './SearchBarContext'
 
 const SearchBar = ({
   initialValues,
-  onSubmit,
   allOpenMode,
   search,
   validationSchema,
