@@ -110,10 +110,10 @@ const SearchBarMenu = (props) => {
 
   useEffect(() => {
     const brAlwaysShowButtons = getIndexedPropValue(alwaysShowButtons, breakpoints.indexOfLower)
-    console.log('🚀 ~ file: SearchBarMenu.jsx ~ line 113 ~ useEffect ~ brAlwaysShowButtons', brAlwaysShowButtons)
     const brAllOpenMode = getIndexedPropValue(allOpenMode, breakpoints.indexOfLower)
-    console.log('🚀 ~ file: SearchBarMenu.jsx ~ line 115 ~ useEffect ~ brAllOpenMode', brAllOpenMode)
     const brKeepButtonsWhenStarted = getIndexedPropValue(keepButtonsWhenStarted, breakpoints.indexOfLower)
+    console.log('🚀 ~ file: SearchBarMenu.jsx ~ line 115 ~ useEffect ~ brAllOpenMode', brAllOpenMode)
+    console.log('🚀 ~ file: SearchBarMenu.jsx ~ line 113 ~ useEffect ~ brAlwaysShowButtons', brAlwaysShowButtons)
     console.log('🚀 ~ file: SearchBarMenu.jsx ~ line 117 ~ useEffect ~ brKeepButtonsWhenStarted', brKeepButtonsWhenStarted)
     if (brAlwaysShowButtons || brAllOpenMode || isOpen) {
       setShowButtons(true)
@@ -122,7 +122,7 @@ const SearchBarMenu = (props) => {
     setShowButtons(isSearchBarFocused ||
       (brKeepButtonsWhenStarted && isStarted)
     )
-  }, [alwaysShowButtons, allOpenMode, isOpen, isSearchBarFocused, isStarted, keepButtonsWhenStarted])
+  }, [alwaysShowButtons, allOpenMode, breakpoints.indexOfLower, isOpen, isSearchBarFocused, isStarted, keepButtonsWhenStarted])
 
   //* hooks/lifecycle
   useIsoOnClickOutside(searchBarRef, onClickOutsideEffect, [isStarted])
