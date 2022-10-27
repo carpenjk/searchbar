@@ -154,6 +154,10 @@ const SearchBarInnerProvider = ({
     }
   }, [openOnMount, open])
 
+  useEffect(() => {
+    setIsSecondaryOpen(isSecondaryWidth)
+  }, [isSecondaryWidth])
+
   return (
     <SearchBarContext.Provider
       value={{
