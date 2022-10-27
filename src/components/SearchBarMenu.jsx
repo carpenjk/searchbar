@@ -1,7 +1,6 @@
 // hooks
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import { Form } from 'formik'
-import { getIndexedPropValue } from '@carpenjk/prop-x'
 import { useIsoOnClickOutside } from '@carpenjk/hooks'
 import { SearchBarContext } from './SearchBarContext'
 
@@ -38,19 +37,17 @@ const SearchBarMenu = (props) => {
   const { open } = control
   const {
     allOpenMode,
-    alwaysShowButtons,
-    breakpoints,
     isOpen,
     isHidden,
     isStarted,
     isSecondaryOpen,
     isFiltersOpen,
     setIsFiltersOpen,
+    showButtons,
     isSearchBarFocused,
     setIsSearchBarFocused,
     setCurrentInputElement,
     hideOnSearch,
-    keepButtonsWhenStarted,
     keepOpenOnSearch,
     breakpointToWrap
   } = searchState
@@ -60,9 +57,6 @@ const SearchBarMenu = (props) => {
   const searchBarBgRef = useRef(null)
   const visibleInputRefs = useRef([])
   const secondaryInputRefs = useRef([])
-
-  //* state ********************************************************
-  const [showButtons, setShowButtons] = useState(false)
 
   //* variables ****************************************************
   const searchBarOffsetTop = offsetTop || DEFAULT_OFFSET_TOP_PX
@@ -97,20 +91,6 @@ const SearchBarMenu = (props) => {
     }
     control.close()
   }
-
-  useEffect(() => {
-    const brAlwaysShowButtons = getIndexedPropValue(alwaysShowButtons, breakpoints.indexOfLower)
-    const brAllOpenMode = getIndexedPropValue(allOpenMode, breakpoints.indexOfLower)
-    const brKeepButtonsWhenStarted = getIndexedPropValue(keepButtonsWhenStarted, breakpoints.indexOfLower)
-    if (brAlwaysShowButtons || brAllOpenMode || isOpen) {
-      setShowButtons(true)
-      return
-    }
-    setShowButtons(isSearchBarFocused ||
-      (brKeepButtonsWhenStarted && isStarted)
-    )
-  }, [alwaysShowButtons, allOpenMode, breakpoints.indexOfLower, isOpen, isSearchBarFocused, isStarted, keepButtonsWhenStarted])
-
   //* hooks/lifecycle
   useIsoOnClickOutside(searchBarRef, onClickOutsideEffect, [isStarted])
   //* component rendering ********************************************************

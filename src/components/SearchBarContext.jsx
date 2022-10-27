@@ -7,6 +7,7 @@ import React, {
 import { useBreakpoints } from '@carpenjk/prop-x/useBreakpoints'
 import { useFormikContext } from 'formik'
 import { useIsoLayoutEffect } from '@carpenjk/hooks'
+import { getIndexedPropValue } from '@carpenjk/prop-x'
 
 const SearchBarContext = React.createContext()
 
@@ -41,6 +42,7 @@ const SearchBarInnerProvider = ({
   const [isPrimaryOpen, setIsPrimaryOpen] = useState(true)
   const [isSecondaryOpen, setIsSecondaryOpen] = useState(allOpenMode || isSecondaryWidth || false)
   const [isFiltersOpen, setIsFiltersOpen] = useState(allOpenMode || false)
+  const [showButtons, setShowButtons] = useState(false)
   const [isSearchBarFocused, setIsSearchBarFocused] = useState(false)
   const [currentInputElement, setCurrentInputElement] = useState()
 
@@ -154,9 +156,21 @@ const SearchBarInnerProvider = ({
     }
   }, [openOnMount, open])
 
-  useIsoLayoutEffect(() => {
+  useEffect(() => {
+    const brAlwaysShowButtons = getIndexedPropValue(alwaysShowButtons, breakpoints.indexOfLower)
+    const brAllOpenMode = getIndexedPropValue(allOpenMode, breakpoints.indexOfLower)
+    const brKeepButtonsWhenStarted = getIndexedPropValue(keepButtonsWhenStarted, breakpoints.indexOfLower)
+
     setIsSecondaryOpen(isSecondaryWidth)
-  }, [isSecondaryWidth])
+
+    if (brAlwaysShowButtons || brAllOpenMode || isOpen) {
+      setShowButtons(true)
+      return
+    }
+    setShowButtons(isSearchBarFocused ||
+      (brKeepButtonsWhenStarted && isStarted)
+    )
+  }, [isSecondaryWidth, alwaysShowButtons, allOpenMode, breakpoints.indexOfLower, isOpen, isSearchBarFocused, isStarted, keepButtonsWhenStarted])
 
   return (
     <SearchBarContext.Provider
@@ -181,6 +195,8 @@ const SearchBarInnerProvider = ({
           isFiltersOpen,
           setIsFiltersOpen,
           isStarted,
+          showButtons,
+          setShowButtons,
           isSearchBarFocused,
           setIsSearchBarFocused,
           currentInputElement,
