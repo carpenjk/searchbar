@@ -24,6 +24,7 @@ const SearchBarInnerProvider = ({
     hideOnMount = false,
     secondaryOpenBreakpoint = 1,
     hideOnSearch,
+    keepOpenOnSearch,
     breakpointToWrap = 1
   } = options || {}
   const breakpoints = useBreakpoints(theme.breakpoints)
@@ -184,6 +185,7 @@ const SearchBarInnerProvider = ({
           hideOnMount,
           secondaryOpenBreakpoint,
           hideOnSearch,
+          keepOpenOnSearch,
           breakpointToWrap,
           onExit: handleExit
         }

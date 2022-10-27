@@ -48,6 +48,7 @@ const SearchBarMenu = (props) => {
     setCurrentInputElement,
     isSecondaryWidth,
     hideOnSearch,
+    keepOpenOnSearch,
     breakpointToWrap
   } = searchState
 
@@ -73,8 +74,13 @@ const SearchBarMenu = (props) => {
     open({ secondary: true })
   }
 
-  const close = () => {
-    control.hide()
+  const onSearch = () => {
+    if (hideOnSearch) {
+      control.hide()
+    }
+    if (!keepOpenOnSearch) {
+      control.close()
+    }
   }
 
   const onClickOutsideEffect = () => {
@@ -164,7 +170,7 @@ const SearchBarMenu = (props) => {
               />
             )}
             {allOpenMode && <div />}
-            <SearchButton tw={{ variant: 'search' }} type="submit" onClick={hideOnSearch ? close : undefined} />
+            <SearchButton tw={{ variant: 'search' }} type="submit" onClick={onSearch} />
           </ButtonContainer>
         </SearchBarContainer>
       </Form>
