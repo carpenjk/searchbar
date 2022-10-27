@@ -49,7 +49,6 @@ const SearchBarMenu = (props) => {
     isSearchBarFocused,
     setIsSearchBarFocused,
     setCurrentInputElement,
-    isSecondaryWidth,
     hideOnSearch,
     keepButtonsWhenStarted,
     keepOpenOnSearch,
@@ -99,15 +98,6 @@ const SearchBarMenu = (props) => {
     control.close()
   }
 
-  function getShowExpandedBackground () {
-    if (allOpenMode) {
-      return true
-    }
-    return isSecondaryWidth
-      ? isSearchBarFocused || isStarted
-      : isSecondaryOpen
-  }
-
   useEffect(() => {
     const brAlwaysShowButtons = getIndexedPropValue(alwaysShowButtons, breakpoints.indexOfLower)
     const brAllOpenMode = getIndexedPropValue(allOpenMode, breakpoints.indexOfLower)
@@ -141,7 +131,7 @@ const SearchBarMenu = (props) => {
           searchBarRef={searchBarRef}
         >
           <ExpandedBackground
-            isExpanded={getShowExpandedBackground()}
+            isExpanded={showButtons}
             hideRight={[false, isFiltersOpen]}
             innerRef={searchBarBgRef}
           />
