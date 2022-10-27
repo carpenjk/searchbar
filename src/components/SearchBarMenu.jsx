@@ -68,9 +68,6 @@ const SearchBarMenu = (props) => {
   const searchBarOffsetTop = offsetTop || DEFAULT_OFFSET_TOP_PX
 
   useEffect(() => {
-    console.log('menu mount')
-  }, [])
-  useEffect(() => {
     if (allOpenMode) {
       open()
     }
