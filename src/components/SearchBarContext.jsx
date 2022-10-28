@@ -6,7 +6,7 @@ import React, {
 import { useBreakpoints } from '@carpenjk/prop-x/useBreakpoints'
 import { useFormikContext } from 'formik'
 import { getIndexedPropValue } from '@carpenjk/prop-x'
-import { useHasMounted } from '@carpenjk/hooks'
+import { useHasMounted, useIsoLayoutEffect } from '@carpenjk/hooks'
 
 const SearchBarContext = React.createContext()
 
@@ -82,7 +82,7 @@ const SearchBarInnerProvider = ({
   }, [brOpenOnMount, brHideOnMount, hasMounted])
 
   // open/close
-  useEffect(() => {
+  useIsoLayoutEffect(() => {
     const isOpenChanged = isOpen !== prevIsOpen
     if ((isOpen && isOpenChanged) || brAllOpenMode) {
       setIsPrimaryOpen(true)
