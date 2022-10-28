@@ -97,7 +97,9 @@ const SearchBarInnerProvider = ({
       (brUseIsStartedState && isStarted) ||
       brAlwaysShowButtons
     )
-    setShowButtons(isOpenChanged || brAlwaysShowButtons || (brUseIsStartedState && isStarted))
+    setShowButtons(isOpen ||
+       brAlwaysShowButtons ||
+       (brUseIsStartedState && isStarted))
 
     if (!isOpen && prevIsOpen) {
       setIsFiltersOpen(false)
