@@ -1,6 +1,7 @@
 import React, {
   useState,
-  useEffect
+  useEffect,
+  useRef
 } from 'react'
 import { useBreakpoints } from '@carpenjk/prop-x/useBreakpoints'
 import { useFormikContext } from 'formik'
@@ -53,6 +54,9 @@ const SearchBarInnerProvider = ({
   const [isSearchBarFocused, setIsSearchBarFocused] = useState(false)
   const [currentInputElement, setCurrentInputElement] = useState()
 
+  // prev
+  const prevIsOpen = useRef(isOpen)
+
   // update options
   useEffect(() => {
     setBrAllOpenMode(getIndexedPropValue(allOpenMode, breakpoints.indexOfLower))
@@ -79,16 +83,25 @@ const SearchBarInnerProvider = ({
 
   // open/close
   useEffect(() => {
-    if (isOpen || brAllOpenMode) {
+    const isOpenChanged = isOpen !== prevIsOpen
+    if ((isOpen && isOpenChanged) || brAllOpenMode) {
       setIsPrimaryOpen(true)
       setIsSecondaryOpen(true)
       setIsFiltersOpen(prev => prev || brAllOpenMode)
       setShowButtons(true)
       return
     }
-    setShowButtons(brAlwaysShowButtons || (brKeepButtonsWhenStarted && isStarted))
-    setIsSecondaryOpen(isSecondaryWidth || isSearchBarFocused)
-    setIsFiltersOpen(false)
+    setIsSecondaryOpen(isOpenChanged ||
+      isSecondaryWidth ||
+      isSearchBarFocused ||
+      (brKeepButtonsWhenStarted && isStarted) ||
+      brAlwaysShowButtons
+    )
+    setShowButtons(isOpenChanged || brAlwaysShowButtons || (brKeepButtonsWhenStarted && isStarted))
+
+    if (!isOpen && prevIsOpen) {
+      setIsFiltersOpen(false)
+    }
   }, [
     isOpen,
     brAllOpenMode,
@@ -125,22 +138,6 @@ const SearchBarInnerProvider = ({
   useEffect(() => {
     setIsStarted(searchHasValues())
   }, [values])
-
-  useEffect(() => {
-    if (isSearchBarFocused) {
-      setIsSecondaryOpen(true)
-      setShowButtons(true)
-      return
-    }
-    setIsSecondaryOpen(isSecondaryWidth || isSearchBarFocused)
-    setShowButtons(brAlwaysShowButtons || (brKeepButtonsWhenStarted && isStarted))
-  }, [
-    brAlwaysShowButtons,
-    brKeepButtonsWhenStarted,
-    isSearchBarFocused,
-    isSecondaryWidth,
-    isStarted
-  ])
 
   return (
     <SearchBarContext.Provider
