@@ -1,12 +1,11 @@
 import React, {
   useState,
-  useEffect,
-  useCallback,
-  useMemo
+  useEffect
 } from 'react'
 import { useBreakpoints } from '@carpenjk/prop-x/useBreakpoints'
 import { useFormikContext } from 'formik'
 import { getIndexedPropValue } from '@carpenjk/prop-x'
+import { useHasMounted } from '@carpenjk/hooks'
 
 const SearchBarContext = React.createContext()
 
@@ -30,8 +29,17 @@ const SearchBarInnerProvider = ({
     secondaryOpenBreakpoint = 1
   } = options || {}
 
+  const hasMounted = useHasMounted()
   const breakpoints = useBreakpoints(theme.breakpoints)
   const isSecondaryWidth = breakpoints.current.width >= breakpoints.br[secondaryOpenBreakpoint]
+
+  const [brAllOpenMode, setBrAllOpenMode] = getIndexedPropValue(allOpenMode, breakpoints.indexOfLower)
+  const [brAlwaysShowButtons, setBrAlwaysShowButtons] = getIndexedPropValue(alwaysShowButtons, breakpoints.indexOfLower)
+  const [brHideOnMount, setBrHideOnMount] = getIndexedPropValue(hideOnMount, breakpoints.indexOfLower)
+  const [brHideOnSearch, setBrHideOnSearch] = getIndexedPropValue(hideOnSearch, breakpoints.indexOfLower)
+  const [brKeepButtonsWhenStarted, setBrKeepButtonsWhenStarted] = getIndexedPropValue(keepButtonsWhenStarted, breakpoints.indexOfLower)
+  const [brKeepOpenOnSearch, setBrKeepOpenOnSearch] = getIndexedPropValue(keepOpenOnSearch, breakpoints.indexOfLower)
+  const [brOpenOnMount, setBrOpenOnMount] = getIndexedPropValue(openOnMount, breakpoints.indexOfLower)
 
   // state
   const { values } = useFormikContext()
@@ -45,82 +53,51 @@ const SearchBarInnerProvider = ({
   const [isSearchBarFocused, setIsSearchBarFocused] = useState(false)
   const [currentInputElement, setCurrentInputElement] = useState()
 
-  const openCloseStateSetters = useMemo(
-    () => ({
-      allOpenMode: {
-        primary: setIsPrimaryOpen,
-        secondary: setIsSecondaryOpen,
-        filters: setIsFiltersOpen
-      },
-      default:
-        !isSecondaryWidth
-          ? { secondary: setIsSecondaryOpen, filters: setIsFiltersOpen }
-          : { filters: setIsFiltersOpen },
-      manual: {
-        primary: setIsPrimaryOpen,
-        secondary: setIsSecondaryOpen,
-        filters: setIsFiltersOpen
-      }
-    }),
-    [isSecondaryWidth, setIsFiltersOpen, setIsSecondaryOpen, setIsPrimaryOpen]
-  )
+  // update options
+  useEffect(() => {
+    setBrAllOpenMode(getIndexedPropValue(allOpenMode, breakpoints.indexOfLower))
+    setBrAlwaysShowButtons(getIndexedPropValue(alwaysShowButtons, breakpoints.indexOfLower))
+    setBrHideOnMount(getIndexedPropValue(hideOnMount, breakpoints.indexOfLower))
+    setBrHideOnSearch(getIndexedPropValue(hideOnSearch, breakpoints.indexOfLower))
+    setBrKeepButtonsWhenStarted(getIndexedPropValue(keepButtonsWhenStarted, breakpoints.indexOfLower))
+    setBrKeepOpenOnSearch(getIndexedPropValue(keepOpenOnSearch, breakpoints.indexOfLower))
+    setBrOpenOnMount(getIndexedPropValue(openOnMount, breakpoints.indexOfLower))
+  }, [breakpoints.indexOfLower])
 
-  const setFromObj = useCallback(
-    (obj, bln) => {
-      Object.keys(obj).forEach((key) => {
-        openCloseStateSetters.manual[key](bln)
-      })
-    },
-    [openCloseStateSetters]
-  )
-
-  const setFromMode = useCallback(
-    (mode, bln) => {
-      setFromObj(openCloseStateSetters[mode], bln)
-    },
-    [setFromObj, openCloseStateSetters]
-  )
-
-  const open = useCallback(
-    (props) => {
-      const { primary, secondary, filters } = props || {}
-      if (!primary && !secondary && !filters) {
-        const mode = allOpenMode ? 'allOpenMode' : 'default'
-        // openCloseFns[mode].forEach((fn) => {
-        //   fn(true);
-        // });
-        setFromMode(mode, true)
-        setIsOpen(true)
-        return
-      }
-      setFromObj(props, true)
+  // mounting effects
+  useEffect(() => {
+    if (hasMounted) {
+      return
+    }
+    if (brOpenOnMount) {
       setIsOpen(true)
-    },
-    [allOpenMode, setFromObj, setFromMode]
-  )
+    }
+    if (brHideOnMount) {
+      setIsHidden(true)
+    }
+  }, [brOpenOnMount, brHideOnMount, hasMounted])
 
-  const close = useCallback(
-    (props) => {
-      const { primary, secondary, filters } = props || {}
-      if (!primary && !secondary && !filters) {
-        const mode = allOpenMode ? 'allOpenMode' : 'default'
-        // openCloseFns[mode].forEach((fn) => fn(false));
-        setFromMode(mode, false)
-        setIsOpen(false)
-        return
-      }
-      setFromObj(props, false)
-      setIsOpen(false)
-    },
-    [allOpenMode, setFromObj, setFromMode]
-  )
-
-  function hide () {
-    setIsHidden(true)
-  }
-  function unHide () {
-    setIsHidden(false)
-  }
+  // open/close
+  useEffect((props) => {
+    if (isOpen || brAllOpenMode) {
+      setIsPrimaryOpen(true)
+      setIsSecondaryOpen(true)
+      setIsFiltersOpen(prev => prev || brAllOpenMode)
+      setShowButtons(true)
+      return
+    }
+    setShowButtons(brAlwaysShowButtons || (brKeepButtonsWhenStarted && isStarted))
+    setIsSecondaryOpen(isSecondaryWidth || isSearchBarFocused)
+    setIsFiltersOpen(false)
+  }, [
+    isOpen,
+    brAllOpenMode,
+    brAlwaysShowButtons,
+    brKeepButtonsWhenStarted,
+    isSearchBarFocused,
+    isStarted,
+    isSecondaryWidth
+  ])
 
   function searchHasValues () {
     if (!values) return false
@@ -150,16 +127,9 @@ const SearchBarInnerProvider = ({
   }, [values])
 
   useEffect(() => {
-    if (openOnMount) {
-      open()
-    }
-  }, [openOnMount, open])
-
-  useEffect(() => {
     const brAlwaysShowButtons = getIndexedPropValue(alwaysShowButtons, breakpoints.indexOfLower)
     const brAllOpenMode = getIndexedPropValue(allOpenMode, breakpoints.indexOfLower)
     const brKeepButtonsWhenStarted = getIndexedPropValue(keepButtonsWhenStarted, breakpoints.indexOfLower)
-
     setIsSecondaryOpen(isSecondaryWidth || isSearchBarFocused)
 
     if (brAlwaysShowButtons || brAllOpenMode || isOpen) {
@@ -174,19 +144,30 @@ const SearchBarInnerProvider = ({
   return (
     <SearchBarContext.Provider
       value={{
-        control: {
-          open,
-          close,
-          hide,
-          unHide,
-          search
+        options: {
+          allOpenMode,
+          brAllOpenMode,
+          alwaysShowButtons,
+          brAlwaysShowButtons,
+          openOnMount,
+          brOpenOnMount,
+          hideOnMount,
+          brHideOnMount,
+          hideOnSearch,
+          brHideOnSearch,
+          secondaryOpenBreakpoint,
+          keepOpenOnSearch,
+          brKeepOpenOnSearch,
+          keepButtonsWhenStarted,
+          brKeepButtonsWhenStarted,
+          breakpointToWrap
         },
         searchState: {
-          allOpenMode,
-          alwaysShowButtons,
           breakpoints,
           isOpen,
+          setIsOpen,
           isHidden,
+          setIsHidden,
           isPrimaryOpen,
           setIsPrimaryOpen,
           isSecondaryOpen,
@@ -194,24 +175,18 @@ const SearchBarInnerProvider = ({
           isFiltersOpen,
           setIsFiltersOpen,
           isStarted,
+          setIsStarted,
           showButtons,
           setShowButtons,
           isSearchBarFocused,
           setIsSearchBarFocused,
           currentInputElement,
           isSecondaryWidth,
-          options,
           setCurrentInputElement,
           values,
           isFieldsWrapped: breakpoints.current.width < breakpoints.br[breakpointToWrap],
-          openOnMount,
-          hideOnMount,
-          secondaryOpenBreakpoint,
-          hideOnSearch,
-          keepOpenOnSearch,
-          keepButtonsWhenStarted,
-          breakpointToWrap,
-          onExit: handleExit
+          onExit: handleExit,
+          search
         }
       }}
     >

@@ -1,5 +1,5 @@
 // hooks
-import React, { useContext, useEffect, useRef } from 'react'
+import React, { useContext, useRef } from 'react'
 import { Form } from 'formik'
 import { useIsoOnClickOutside } from '@carpenjk/hooks'
 import { SearchBarContext } from './SearchBarContext'
@@ -33,12 +33,18 @@ const SearchBarMenu = (props) => {
   } = props
   //* context *********************************************************
 
-  const { control, searchState } = useContext(SearchBarContext)
-  const { open } = control
+  const { searchState, options } = useContext(SearchBarContext)
   const {
-    allOpenMode,
+    brAllOpenMode,
+    brHideOnSearch,
+    brKeepOpenOnSearch,
+    breakpointToWrap
+  } = options
+  const {
     isOpen,
+    setIsOpen,
     isHidden,
+    setIsHidden,
     isStarted,
     isSecondaryOpen,
     isFiltersOpen,
@@ -46,10 +52,7 @@ const SearchBarMenu = (props) => {
     showButtons,
     isSearchBarFocused,
     setIsSearchBarFocused,
-    setCurrentInputElement,
-    hideOnSearch,
-    keepOpenOnSearch,
-    breakpointToWrap
+    setCurrentInputElement
   } = searchState
 
   //* Dom References ***********************************************
@@ -61,25 +64,18 @@ const SearchBarMenu = (props) => {
   //* variables ****************************************************
   const searchBarOffsetTop = offsetTop || DEFAULT_OFFSET_TOP_PX
 
-  useEffect(() => {
-    if (allOpenMode) {
-      open()
-    }
-  }, [allOpenMode, open])
-
   //* event handlers ***********************************************
   const handleFocus = (e) => {
     setIsSearchBarFocused(true)
     setCurrentInputElement(e.target)
-    open({ secondary: true })
   }
 
   const onSearch = () => {
-    if (hideOnSearch) {
-      control.hide()
+    if (brHideOnSearch) {
+      setIsHidden(false)
     }
-    if (!keepOpenOnSearch) {
-      control.close()
+    if (!brKeepOpenOnSearch) {
+      setIsOpen(false)
     }
   }
 
@@ -89,7 +85,7 @@ const SearchBarMenu = (props) => {
       onExit()
       return
     }
-    control.close()
+    setIsOpen(false)
   }
   //* hooks/lifecycle
   useIsoOnClickOutside(searchBarRef, onClickOutsideEffect, [isStarted])
@@ -145,14 +141,14 @@ const SearchBarMenu = (props) => {
             isDisplayed={showButtons}
             isFiltersOpen={isFiltersOpen}
           >
-            {!allOpenMode && (
+            {!brAllOpenMode && (
               <MoreButton
                 text="More Filters"
                 onClick={() => setIsFiltersOpen((prev) => !prev)}
                 isExpanded={isFiltersOpen}
               />
             )}
-            {allOpenMode && <div />}
+            {brAllOpenMode && <div />}
             <SearchButton tw={{ variant: 'search' }} type="submit" onClick={onSearch} />
           </ButtonContainer>
         </SearchBarContainer>
