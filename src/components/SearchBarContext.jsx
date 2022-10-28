@@ -24,7 +24,7 @@ const SearchBarInnerProvider = ({
     breakpointToWrap = 1,
     hideOnMount = false,
     hideOnSearch = false,
-    keepButtonsWhenStarted = false,
+    useIsStartedState = false,
     keepOpenOnSearch = false,
     openOnMount = false,
     secondaryOpenBreakpoint = 1
@@ -38,7 +38,7 @@ const SearchBarInnerProvider = ({
   const [brAlwaysShowButtons, setBrAlwaysShowButtons] = useState(getIndexedPropValue(alwaysShowButtons, breakpoints.indexOfLower))
   const [brHideOnMount, setBrHideOnMount] = useState(getIndexedPropValue(hideOnMount, breakpoints.indexOfLower))
   const [brHideOnSearch, setBrHideOnSearch] = useState(getIndexedPropValue(hideOnSearch, breakpoints.indexOfLower))
-  const [brKeepButtonsWhenStarted, setBrKeepButtonsWhenStarted] = useState(getIndexedPropValue(keepButtonsWhenStarted, breakpoints.indexOfLower))
+  const [brUseIsStartedState, setBrUseIsStartedState] = useState(getIndexedPropValue(useIsStartedState, breakpoints.indexOfLower))
   const [brKeepOpenOnSearch, setBrKeepOpenOnSearch] = useState(getIndexedPropValue(keepOpenOnSearch, breakpoints.indexOfLower))
   const [brOpenOnMount, setBrOpenOnMount] = useState(getIndexedPropValue(openOnMount, breakpoints.indexOfLower))
 
@@ -63,7 +63,7 @@ const SearchBarInnerProvider = ({
     setBrAlwaysShowButtons(getIndexedPropValue(alwaysShowButtons, breakpoints.indexOfLower))
     setBrHideOnMount(getIndexedPropValue(hideOnMount, breakpoints.indexOfLower))
     setBrHideOnSearch(getIndexedPropValue(hideOnSearch, breakpoints.indexOfLower))
-    setBrKeepButtonsWhenStarted(getIndexedPropValue(keepButtonsWhenStarted, breakpoints.indexOfLower))
+    setBrUseIsStartedState(getIndexedPropValue(useIsStartedState, breakpoints.indexOfLower))
     setBrKeepOpenOnSearch(getIndexedPropValue(keepOpenOnSearch, breakpoints.indexOfLower))
     setBrOpenOnMount(getIndexedPropValue(openOnMount, breakpoints.indexOfLower))
   }, [breakpoints.indexOfLower])
@@ -94,10 +94,10 @@ const SearchBarInnerProvider = ({
     setIsSecondaryOpen((isOpenChanged && isOpen) ||
       isSecondaryWidth ||
       isSearchBarFocused ||
-      (brKeepButtonsWhenStarted && isStarted) ||
+      (brUseIsStartedState && isStarted) ||
       brAlwaysShowButtons
     )
-    setShowButtons(isOpenChanged || brAlwaysShowButtons || (brKeepButtonsWhenStarted && isStarted))
+    setShowButtons(isOpenChanged || brAlwaysShowButtons || (brUseIsStartedState && isStarted))
 
     if (!isOpen && prevIsOpen) {
       setIsFiltersOpen(false)
@@ -106,7 +106,7 @@ const SearchBarInnerProvider = ({
     isOpen,
     brAllOpenMode,
     brAlwaysShowButtons,
-    brKeepButtonsWhenStarted,
+    brUseIsStartedState,
     isSearchBarFocused,
     isStarted,
     isSecondaryWidth
@@ -156,8 +156,8 @@ const SearchBarInnerProvider = ({
           secondaryOpenBreakpoint,
           keepOpenOnSearch,
           brKeepOpenOnSearch,
-          keepButtonsWhenStarted,
-          brKeepButtonsWhenStarted,
+          useIsStartedState,
+          brUseIsStartedState,
           breakpointToWrap
         },
         searchState: {
