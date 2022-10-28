@@ -129,7 +129,7 @@ const SearchBarInnerProvider = ({
   useEffect(() => {
     if (isSearchBarFocused) {
       setIsSecondaryOpen(true)
-      showButtons(true)
+      setShowButtons(true)
       return
     }
     setIsSecondaryOpen(isSecondaryWidth || isSearchBarFocused)
