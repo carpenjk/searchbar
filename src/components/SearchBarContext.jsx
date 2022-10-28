@@ -33,13 +33,13 @@ const SearchBarInnerProvider = ({
   const breakpoints = useBreakpoints(theme.breakpoints)
   const isSecondaryWidth = breakpoints.current.width >= breakpoints.br[secondaryOpenBreakpoint]
 
-  const [brAllOpenMode, setBrAllOpenMode] = getIndexedPropValue(allOpenMode, breakpoints.indexOfLower)
-  const [brAlwaysShowButtons, setBrAlwaysShowButtons] = getIndexedPropValue(alwaysShowButtons, breakpoints.indexOfLower)
-  const [brHideOnMount, setBrHideOnMount] = getIndexedPropValue(hideOnMount, breakpoints.indexOfLower)
-  const [brHideOnSearch, setBrHideOnSearch] = getIndexedPropValue(hideOnSearch, breakpoints.indexOfLower)
-  const [brKeepButtonsWhenStarted, setBrKeepButtonsWhenStarted] = getIndexedPropValue(keepButtonsWhenStarted, breakpoints.indexOfLower)
-  const [brKeepOpenOnSearch, setBrKeepOpenOnSearch] = getIndexedPropValue(keepOpenOnSearch, breakpoints.indexOfLower)
-  const [brOpenOnMount, setBrOpenOnMount] = getIndexedPropValue(openOnMount, breakpoints.indexOfLower)
+  const [brAllOpenMode, setBrAllOpenMode] = useState(getIndexedPropValue(allOpenMode, breakpoints.indexOfLower))
+  const [brAlwaysShowButtons, setBrAlwaysShowButtons] = useState(getIndexedPropValue(alwaysShowButtons, breakpoints.indexOfLower))
+  const [brHideOnMount, setBrHideOnMount] = useState(getIndexedPropValue(hideOnMount, breakpoints.indexOfLower))
+  const [brHideOnSearch, setBrHideOnSearch] = useState(getIndexedPropValue(hideOnSearch, breakpoints.indexOfLower))
+  const [brKeepButtonsWhenStarted, setBrKeepButtonsWhenStarted] = useState(getIndexedPropValue(keepButtonsWhenStarted, breakpoints.indexOfLower))
+  const [brKeepOpenOnSearch, setBrKeepOpenOnSearch] = useState(getIndexedPropValue(keepOpenOnSearch, breakpoints.indexOfLower))
+  const [brOpenOnMount, setBrOpenOnMount] = useState(getIndexedPropValue(openOnMount, breakpoints.indexOfLower))
 
   // state
   const { values } = useFormikContext()
