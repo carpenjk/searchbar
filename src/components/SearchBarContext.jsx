@@ -91,7 +91,7 @@ const SearchBarInnerProvider = ({
       setShowButtons(true)
       return
     }
-    setIsSecondaryOpen(isOpenChanged ||
+    setIsSecondaryOpen((isOpenChanged && isOpen) ||
       isSecondaryWidth ||
       isSearchBarFocused ||
       (brKeepButtonsWhenStarted && isStarted) ||

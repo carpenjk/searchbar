@@ -67,6 +67,7 @@ const SearchBarMenu = (props) => {
   //* event handlers ***********************************************
   const handleFocus = (e) => {
     setIsSearchBarFocused(true)
+    setIsOpen(true)
     setCurrentInputElement(e.target)
   }
 
