@@ -127,19 +127,20 @@ const SearchBarInnerProvider = ({
   }, [values])
 
   useEffect(() => {
-    const brAlwaysShowButtons = getIndexedPropValue(alwaysShowButtons, breakpoints.indexOfLower)
-    const brAllOpenMode = getIndexedPropValue(allOpenMode, breakpoints.indexOfLower)
-    const brKeepButtonsWhenStarted = getIndexedPropValue(keepButtonsWhenStarted, breakpoints.indexOfLower)
-    setIsSecondaryOpen(isSecondaryWidth || isSearchBarFocused)
-
-    if (brAlwaysShowButtons || brAllOpenMode || isOpen) {
-      setShowButtons(true)
+    if (isSearchBarFocused) {
+      setIsSecondaryOpen(true)
+      showButtons(true)
       return
     }
-    setShowButtons(isSearchBarFocused ||
-      (brKeepButtonsWhenStarted && isStarted)
-    )
-  }, [isSecondaryWidth, alwaysShowButtons, allOpenMode, breakpoints.indexOfLower, isOpen, isSearchBarFocused, isStarted, keepButtonsWhenStarted])
+    setIsSecondaryOpen(isSecondaryWidth || isSearchBarFocused)
+    setShowButtons(brAlwaysShowButtons || (brKeepButtonsWhenStarted && isStarted))
+  }, [
+    brAlwaysShowButtons,
+    brKeepButtonsWhenStarted,
+    isSearchBarFocused,
+    isSecondaryWidth,
+    isStarted
+  ])
 
   return (
     <SearchBarContext.Provider
