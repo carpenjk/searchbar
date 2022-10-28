@@ -70,6 +70,10 @@ const SearchBarMenu = (props) => {
     setIsOpen(true)
     setCurrentInputElement(e.target)
   }
+  const handleFilterClick = () => {
+    setIsOpen(true)
+    setIsFiltersOpen((prev) => !prev)
+  }
 
   const onSearch = () => {
     if (brHideOnSearch) {
@@ -145,7 +149,7 @@ const SearchBarMenu = (props) => {
             {!brAllOpenMode && (
               <MoreButton
                 text="More Filters"
-                onClick={() => setIsFiltersOpen((prev) => !prev)}
+                onClick={handleFilterClick}
                 isExpanded={isFiltersOpen}
               />
             )}
