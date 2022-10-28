@@ -5,7 +5,7 @@ import React, {
 import { useBreakpoints } from '@carpenjk/prop-x/useBreakpoints'
 import { useFormikContext } from 'formik'
 import { getIndexedPropValue } from '@carpenjk/prop-x'
-import { useHasMounted } from '@carpenjk/hooks'
+import useHasMounted from '@carpenjk/hooks'
 
 const SearchBarContext = React.createContext()
 
@@ -22,7 +22,7 @@ const SearchBarInnerProvider = ({
     alwaysShowButtons = true,
     breakpointToWrap = 1,
     hideOnMount = false,
-    hideOnSearch,
+    hideOnSearch = false,
     keepButtonsWhenStarted = false,
     keepOpenOnSearch = false,
     openOnMount = false,
@@ -78,7 +78,7 @@ const SearchBarInnerProvider = ({
   }, [brOpenOnMount, brHideOnMount, hasMounted])
 
   // open/close
-  useEffect((props) => {
+  useEffect(() => {
     if (isOpen || brAllOpenMode) {
       setIsPrimaryOpen(true)
       setIsSecondaryOpen(true)
