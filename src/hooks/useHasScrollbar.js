@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react'
 const useHasVerticalScrollbar = (elem, boundingParent) => {
   const [hasScrollbar, setHasScrollbar] = useState(false)
   function calcHasScrollbar () {
-    if (typeof elem.innerWidth === 'number') {
-      setHasScrollbar(elem.innerHeight > boundingParent.innerHeight)
-    }
+    const elemHeight = elem.getBoundingClientRect().height
+    const boundingParentHeight = boundingParent.getBoundingClientRect().height
+    setHasScrollbar(elemHeight > boundingParentHeight)
   }
 
   useEffect(() => {
