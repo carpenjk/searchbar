@@ -1,7 +1,7 @@
 import React from 'react'
 import { Formik } from 'formik'
 import SearchBarMenu from './SearchBarMenu'
-import { SearchBarInnerProvider } from './SearchBarContext'
+import { SearchBarInnerProvider } from './context/SearchBarContext'
 
 const SearchBar = ({
   initialValues,
