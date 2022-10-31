@@ -17,7 +17,6 @@ const StyledInputGroup = styled.div`
     ${condition('hide')`
       display: none;
     `}
-      
   `}
 `
 
