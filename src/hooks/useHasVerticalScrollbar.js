@@ -1,24 +1,22 @@
 import { useEffect, useState } from 'react'
 
-const useHasVerticalScrollbar = (elem, boundingParent, deps) => {
+const useHasVerticalScrollbar = (elem, deps) => {
   const [hasScrollbar, setHasScrollbar] = useState(false)
   const _deps = deps ? [...deps] : []
 
   useEffect(() => {
     function calcHasScrollbar () {
-      if (!elem || !boundingParent) {
+      if (!elem) {
         setHasScrollbar(false)
         return
       }
-      const elemHeight = elem.getBoundingClientRect().height
-      const boundingParentHeight = boundingParent.getBoundingClientRect().height
-      setHasScrollbar(elemHeight > boundingParentHeight)
+      setHasScrollbar(elem.scrollHeight > elem.clientHeight)
     }
 
     window.addEventListener('resize', calcHasScrollbar)
     calcHasScrollbar()
     return () => window.removeEventListener('resize', calcHasScrollbar)
-  }, [elem, boundingParent, ..._deps])
+  }, [elem, ..._deps])
 
   return (hasScrollbar)
 }

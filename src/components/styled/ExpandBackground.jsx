@@ -9,7 +9,7 @@ import {
   getPaddingBottom,
   getPaddingLeft
 } from '@carpenjk/themeweaver'
-import useHasVerticalScrollbar from '../../hooks/useHasScrollbar'
+import useHasVerticalScrollbar from '../../hooks/useHasVerticalScrollbar'
 
 const StyledBackground = styled.div`
   background-color: transparent;
