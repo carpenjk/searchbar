@@ -9,6 +9,7 @@ import {
   getPaddingBottom,
   getPaddingLeft
 } from '@carpenjk/themeweaver'
+import useHasVerticalScrollbar from '../../hooks/useHasScrollbar'
 
 const StyledBackground = styled.div`
   background-color: transparent;
@@ -22,11 +23,12 @@ const StyledBackground = styled.div`
   right: -${getPaddingRight('searchBar', '8px')};
   bottom: -${getPaddingBottom('searchBar', '8px')};
   left: -${getPaddingLeft('searchBar', '8px')};
+  z-index: -999999;
 
   ${condition('hideRight')`
     right: 0;
   `}
-  z-index: -999999;
+
 
   ${breakpoint(1)`
     background-color: transparent;
@@ -51,12 +53,13 @@ StyledBackground.defaultProps = {
 }
 
 const ExpandBackground = (props) => {
-  const { isExpanded, hideRight, innerRef } = props
+  const { isExpanded, innerRef, menuContainerRef, searchBarRef } = props
+  const hasVerticalScroll = useHasVerticalScrollbar(menuContainerRef.current, searchBarRef.current)
 
   return (
     <StyledBackground
       isExpanded={isExpanded}
-      hideRight={hideRight}
+      hideRight={hasVerticalScroll}
       ref={innerRef}
     />
   )

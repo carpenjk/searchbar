@@ -57,6 +57,7 @@ const SearchBarMenu = (props) => {
 
   //* Dom References ***********************************************
   const searchBarRef = useRef(null)
+  const menuContainerRef = useRef(null)
   const searchBarBgRef = useRef(null)
   const visibleInputRefs = useRef([])
   const secondaryInputRefs = useRef([])
@@ -94,6 +95,7 @@ const SearchBarMenu = (props) => {
   }
   //* hooks/lifecycle
   useIsoOnClickOutside(searchBarRef, onClickOutsideEffect, [isStarted])
+
   //* component rendering ********************************************************
   return (
     <>
@@ -109,11 +111,14 @@ const SearchBarMenu = (props) => {
           searchBarRef={searchBarRef}
         >
           <ExpandedBackground
+            searchBarRef={searchBarRef}
+            menuContainerRef={menuContainerRef}
             isExpanded={showButtons}
             hideRight={[false, isFiltersOpen]}
             innerRef={searchBarBgRef}
           />
           <MenuContainer
+            menuContainerRef={menuContainerRef}
             isFiltersOpen={isFiltersOpen}
             isSearchBarFocused={isSearchBarFocused}
           >
