@@ -43,7 +43,7 @@ const StyledButton = styled.button`
   font-weight: ${getFontWeight({}, 'bold')};
   font-size: ${getFontSize({}, '18px')};
   line-height: ${getLineHeight({}, '21px')};
-
+  transition: all 0.35s linear;
   &:active {
     color: ${getColor({ suffix: '-active' }, '#F6FEFF')};
     background-color: ${getBackgroundColor({ suffix: '-active' }, '#B64D57')};
@@ -51,7 +51,7 @@ const StyledButton = styled.button`
     border-color: ${getBorderColor({ suffix: '-active' })};
     transform: ${getTransform({ suffix: '-active' }, 'none')};
     text-decoration: underline;
-    transition: all 0.35s linear;
+    
   }
 
   &:hover {
@@ -59,7 +59,6 @@ const StyledButton = styled.button`
     background-color: ${getBackgroundColor({ suffix: '-hover' }, '#B64D57')};
     border: ${getBorder({ suffix: '-hover' }, '2px solid #cdf7f6')};
     transform: ${getTransform({ suffix: '-hover' }, 'none')};
-    transition: all 0.35s linear;
   }
 
   :disabled {
@@ -95,7 +94,6 @@ const StyledButton = styled.button`
       border: ${getBorder({ suffix: '-active' }, '2px solid #cdf7f6')};
       transform: ${getTransform({ suffix: '-active' }, 'none')};
       text-decoration: underline;
-      transition: all 0.35s linear;
     }
 
     &:hover {
@@ -103,7 +101,6 @@ const StyledButton = styled.button`
       background-color: ${getBackgroundColor({ suffix: '-hover' }, '#B64D57')};
       border: ${getBorder({ suffix: '-hover' }, '2px solid #cdf7f6')};
       transform: ${getTransform({ suffix: '-hover' }, 'none')};
-      transition: all 0.35s linear;
     }
     
     &:disabled {

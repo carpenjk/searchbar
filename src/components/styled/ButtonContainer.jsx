@@ -16,10 +16,10 @@ const StyledButtonContainer = styled.div`
   `}
   justify-content: space-between;
   background-color: ${getBackgroundColor({}, 'initial')};
-  padding-top: ${getPaddingTop({}, '0')};
-  padding-right: ${getPaddingRight({}, '0')};
-  padding-bottom: ${getPaddingBottom({}, '0')};
-  padding-left: ${getPaddingLeft({}, '0')};
+  padding-top: ${getPaddingTop({}, '16px')};
+  padding-right: ${getPaddingRight({}, '16px')};
+  padding-bottom: ${getPaddingBottom({}, '16px')};
+  padding-left: ${getPaddingLeft({}, '16px')};
   border-top: none;
 
   ${condition('isSearchFiltersOpen')`
@@ -29,10 +29,10 @@ const StyledButtonContainer = styled.div`
   ${breakpoint(1)`
     display: none;
     background-color: ${getBackgroundColor({}, 'initial')};
-    padding-top: ${getPaddingTop({}, '0')};
-    padding-right: ${getPaddingRight({}, '0')};
-    padding-bottom: ${getPaddingBottom({}, '0')};
-    padding-left: ${getPaddingLeft({}, '0')};
+    padding-top: ${getPaddingTop({}, '16px')};
+    padding-right: ${getPaddingRight({}, '16px')};
+    padding-bottom: ${getPaddingBottom({}, '16px')};
+    padding-left: ${getPaddingLeft({}, '16px')};
     ${condition('isDisplayed')`
       display: flex;
     `}
