@@ -19,7 +19,7 @@ import {
   getTransform
 } from '@carpenjk/themeweaver'
 
-import { condition, breakpoint } from '@carpenjk/prop-x/css'
+import { breakpoint } from '@carpenjk/prop-x/css'
 
 const StyledButton = styled.button`
   display: flex;
@@ -55,14 +55,12 @@ const StyledButton = styled.button`
   }
 
   &:hover {
-    ${condition('hover')`
     color: ${getColor({ suffix: '_hover' }, '#E5707A')};
     background-color: ${getBackgroundColor({ suffix: '_hover' }, 'white')};
     border: ${getBorder({ suffix: '_hover' }, '2px solid #cdf7f6')};
     border-color: ${getBorderColor({ suffix: '_hover' })};
     transform: ${getTransform({ suffix: '_hover' }, 'none')};
     transition: all 0.35s linear;
-    `}
   }
 
   :disabled {
