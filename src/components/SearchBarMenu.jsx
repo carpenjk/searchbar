@@ -5,16 +5,16 @@ import { useIsoOnClickOutside } from '@carpenjk/hooks'
 import { SearchBarContext } from './context/SearchBarContext'
 
 // components
-import SearchBarContainer from './SearchBarContainer'
-import ExpandedBackground from './ExpandBackground'
-import SearchButton from './SearchButton'
-import MoreButton from './MoreButton'
+import SearchBarContainer from './styled/SearchBarContainer'
+import ExpandedBackground from './styled/ExpandBackground'
+import SearchButton from './styled/SearchButton'
+import MoreButton from './styled/MoreButton'
 import SearchFilters from './SearchFilters'
 import PopupModal from '@carpenjk/popup-modal'
-import InputGroup from './InputGroup'
+import InputGroup from './styled/InputGroup'
 import MenuContainer from './MenuContainer'
-import SearchFieldsContainer from './SearchFieldsContainer'
-import ButtonContainer from './ButtonContainer'
+import SearchFieldsContainer from './styled/SearchFieldsContainer'
+import ButtonContainer from './styled/ButtonContainer'
 
 // global var
 const DEFAULT_OFFSET_TOP_PX = 20
