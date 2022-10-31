@@ -44,7 +44,7 @@ const StyledButton = styled.button`
   font-size: ${getFontSize({}, '18px')};
   line-height: ${getLineHeight({}, '21px')};
 
-  &:isActive {
+  &:active {
     color: ${getColor({ suffix: '_isActive' }, '#F6FEFF')};
     background-color: ${getBackgroundColor({ suffix: '_isActive' }, 'white')};
     border: ${getBorder({ suffix: '_isActive' }, '2px solid #cdf7f6')};
@@ -92,7 +92,7 @@ const StyledButton = styled.button`
     font-size: ${getFontSize({}, '18px')};
     line-height: ${getLineHeight({}, '21px')};
 
-    &:isActive {
+    &:active {
       color: ${getColor({ suffix: '_isActive' }, '#E5707A')};
       background-color: ${getBackgroundColor({ suffix: '_isActive' }, 'white')};
       border: ${getBorder({ suffix: '_isActive' }, '2px solid #cdf7f6')};
