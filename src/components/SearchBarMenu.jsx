@@ -2,7 +2,7 @@
 import React, { useContext, useRef } from 'react'
 import { Form } from 'formik'
 import { useIsoOnClickOutside } from '@carpenjk/hooks'
-import { SearchBarContext } from './SearchBarContext'
+import { SearchBarContext } from './context/SearchBarContext'
 
 // components
 import SearchBarContainer from './SearchBarContainer'
