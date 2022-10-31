@@ -12,7 +12,7 @@ import MoreButton from './styled/MoreButton'
 import SearchFilters from './SearchFilters'
 import PopupModal from '@carpenjk/popup-modal'
 import InputGroup from './styled/InputGroup'
-import MenuContainer from './MenuContainer'
+import MenuContainer from './styled/MenuContainer'
 import SearchFieldsContainer from './styled/SearchFieldsContainer'
 import ButtonContainer from './styled/ButtonContainer'
 
