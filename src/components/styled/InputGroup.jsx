@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { breakpoint, condition } from '@carpenjk/prop-x/css'
 
-const StyledInputGroup = styled.div`
+export const StyledInputGroup = styled.div`
   display: flex;
   flex-direction: column;
 
@@ -28,7 +28,7 @@ const InputGroup = (props) => {
   const { hide, children } = props
 
   return (
-    <StyledInputGroup test={[true, false]} className="inputGroup" hide={hide}>
+    <StyledInputGroup hide={hide}>
       {children}
     </StyledInputGroup>
   )

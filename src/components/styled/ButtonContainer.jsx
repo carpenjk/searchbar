@@ -5,7 +5,8 @@ import {
   getPaddingTop,
   getPaddingRight,
   getPaddingBottom,
-  getPaddingLeft
+  getPaddingLeft,
+  getBackgroundColor
 } from '@carpenjk/themeweaver'
 
 const StyledButtonContainer = styled.div`
@@ -14,10 +15,11 @@ const StyledButtonContainer = styled.div`
     display: flex;
   `}
   justify-content: space-between;
-  padding-top: ${getPaddingTop('searchBar_container.buttons', '0')};
-  padding-right: ${getPaddingRight('searchBar_container.buttons', '0')};
-  padding-bottom: ${getPaddingBottom('searchBar_container.buttons', '0')};
-  padding-left: ${getPaddingLeft('searchBar_container.buttons', '0')};
+  background-color: ${getBackgroundColor({}, 'initial')};
+  padding-top: ${getPaddingTop({}, '0')};
+  padding-right: ${getPaddingRight({}, '0')};
+  padding-bottom: ${getPaddingBottom({}, '0')};
+  padding-left: ${getPaddingLeft({}, '0')};
   border-top: none;
 
   ${condition('isSearchFiltersOpen')`
@@ -26,11 +28,19 @@ const StyledButtonContainer = styled.div`
 
   ${breakpoint(1)`
     display: none;
+    background-color: ${getBackgroundColor({}, 'initial')};
+    padding-top: ${getPaddingTop({}, '0')};
+    padding-right: ${getPaddingRight({}, '0')};
+    padding-bottom: ${getPaddingBottom({}, '0')};
+    padding-left: ${getPaddingLeft({}, '0')};
     ${condition('isDisplayed')`
       display: flex;
     `}
   `}
 `
+StyledButtonContainer.defaultProps = {
+  tw: { semKey: 'searchBar__buttonContainer' }
+}
 
 const ButtonContainer = ({ children, isDisplayed, isFiltersOpen }) => (
   <StyledButtonContainer

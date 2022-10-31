@@ -6,11 +6,7 @@ import {
   getWidth,
   getMaxHeight,
   getMaxWidth,
-  getMinWidth,
-  getMarginTop,
-  getMarginRight,
-  getMarginBottom,
-  getMarginLeft
+  getMinWidth
 } from '@carpenjk/themeweaver'
 import { breakpoint, condition, getProp } from '@carpenjk/prop-x/css'
 
@@ -25,40 +21,31 @@ const StyledSearchBar = styled.div`
   transform: translateX(-50%);
   box-sizing: content-box;
   background-color: transparent;
-
+  border-radius: ${getBorderRadius({}, '8px')};
   max-height: ${getMaxHeight({}, '82vh')};
   max-width: ${getMaxWidth({}, 'none')};
   width: ${getWidth({}, 'auto')};
   z-index: 999999;
-  border-radius: ${getBorderRadius({}, '8px')};
 
   ${condition('hide')`
     display: none;
   `}
 
   ${condition('isSecondaryOpen')`
-    background-color: ${getBackgroundColor({}, 'white')};
-    margin-top: ${getMarginTop({}, '0')};
-    margin-right: ${getMarginRight({}, '0')};
-    margin-bottom: ${getMarginBottom({}, '0')};
-    margin-left: ${getMarginLeft({}, '0')};
+    background-color: ${getBackgroundColor({}, '#F6FEFF')};
     max-width: ${getProp('openMaxWidth')};
   `}
 
   ${condition('isFiltersOpen')`
-    width: 90vw;
+    width: ${getWidth({}, '90vw')};
     max-width: ${getProp('openMaxWidth')};
     max-height: ${getMaxHeight({}, '82vh')};
   `} 
 
   ${breakpoint(1)`
     top: ${getProp('offsetTop')}px;
-    margin-top: ${getMarginTop({}, '0')};
-    margin-right: ${getMarginRight({}, '0')};
-    margin-bottom: ${getMarginBottom({}, '0')};
-    margin-left: ${getMarginLeft({}, '0')};
     padding: 0;
-    background-color: ${getBackgroundColor({}, 'white')};
+    background-color: ${getBackgroundColor({}, '#F6FEFF')};
     width: ${getWidth({}, 'auto')};
     max-width: ${getMaxWidth({}, 'none')};
     min-width: ${getMinWidth({}, '0')};
@@ -70,13 +57,13 @@ const StyledSearchBar = styled.div`
 
     ${condition('isSearchBarFocused')`
       max-width: ${getProp('openMaxWidth')};
-  `}
+    `}
 
-  ${condition('isFiltersOpen')`
-    width: 90vw;
-    max-width: ${getProp('openMaxWidth')};
-    max-height: ${getMaxHeight({}, '82vh')};
-  `}  
+    ${condition('isFiltersOpen')`
+      width: ${getWidth({}, '90vw')};
+      max-width: ${getProp('openMaxWidth')};
+      max-height: ${getMaxHeight({}, '82vh')};
+    `}  
 `}
 `
 

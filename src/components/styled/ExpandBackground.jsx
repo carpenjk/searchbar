@@ -13,15 +13,15 @@ import {
 const StyledBackground = styled.div`
   background-color: transparent;
   ${condition('isExpanded')`
-    background-color: ${getBackgroundColor('searchBar', 'none')};
+    background-color: ${getBackgroundColor('searchBar', 'initial')};
     border: 1px solid #e1e1e1;
   `}
   border-radius: ${getBorderRadius('searchBar', '8px')};
   position: absolute;
-  top: -${getPaddingTop('searchBar', '1rem')};
-  right: -${getPaddingRight('searchBar', '1rem')};
-  bottom: -${getPaddingBottom('searchBar', '1rem')};
-  left: -${getPaddingLeft('searchBar', '1rem')};
+  top: -${getPaddingTop('searchBar', '8px')};
+  right: -${getPaddingRight('searchBar', '8px')};
+  bottom: -${getPaddingBottom('searchBar', '8px')};
+  left: -${getPaddingLeft('searchBar', '8px')};
 
   ${condition('hideRight')`
     right: 0;
@@ -31,15 +31,14 @@ const StyledBackground = styled.div`
   ${breakpoint(1)`
     background-color: transparent;
     ${condition('isExpanded')`
-      background-color: ${getBackgroundColor('searchBar', 'none')};
+      background-color: ${getBackgroundColor('searchBar', 'initial')};
     `}
-    
     border-radius: ${getBorderRadius('searchBar', '8px')};
-    top: -${getPaddingTop('searchBar', '1rem')};
-    right: -${getPaddingRight('searchBar', '1rem')};
-    bottom: -${getPaddingBottom('searchBar', '1rem')};
-    left: -${getPaddingLeft('searchBar', '1rem')};
-    right: -${getPaddingRight('searchBar', '1rem')};
+    top: -${getPaddingTop('searchBar', '8px')};
+    right: -${getPaddingRight('searchBar', '8px')};
+    bottom: -${getPaddingBottom('searchBar', '8px')};
+    left: -${getPaddingLeft('searchBar', '8px')};
+    right: -${getPaddingRight('searchBar', '8px')};
     ${condition('hideRight')`
       right: 0;
     `}

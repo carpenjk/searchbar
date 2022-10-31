@@ -16,37 +16,69 @@ import {
   getPaddingBottom,
   getPaddingLeft
 } from '@carpenjk/themeweaver'
-import { condition } from '@carpenjk/prop-x/css'
+import { breakpoint, condition } from '@carpenjk/prop-x/css'
 
 const StyledButton = styled.button`
   flex: none;
-  padding-top: ${getPaddingTop('button.expander', '0')};
-  padding-right: ${getPaddingRight('button.expander', '0')};
-  padding-bottom: ${getPaddingBottom('button.expander', '0')};
-  padding-left: ${getPaddingLeft('button.expander', '0')};
-  margin-top: ${getMarginTop('button.expander', '0')};
-  margin-right: ${getMarginRight('button.expander', '0')};
-  margin-bottom: ${getMarginBottom('button.expander', '0')};
-  margin-left: ${getMarginLeft('button.expander', '0')};
-  background-color: ${getBackgroundColor('button.expander', 'initial')};
-  color: ${getColor('button.expander', 'inherit')};
-  font-family: ${getFontFamily('button.expander', 'inherit')};
-  font-weight: ${getFontWeight('button.expander', 'normal')};
-  font-size: ${getFontSize('button.expander', '1.6rem')};
-  letter-spacing: ${getLetterSpacing('button.expander', '0.025em')};
-
+  padding-top: ${getPaddingTop({}, '0')};
+  padding-right: ${getPaddingRight({}, '0')};
+  padding-bottom: ${getPaddingBottom({}, '0')};
+  padding-left: ${getPaddingLeft({}, '0')};
+  margin-top: ${getMarginTop({}, '0')};
+  margin-right: ${getMarginRight({}, '0')};
+  margin-bottom: ${getMarginBottom({}, '0')};
+  margin-left: ${getMarginLeft({}, '0')};
+  background-color: ${getBackgroundColor({}, 'initial')};
+  color: ${getColor({}, 'inherit')};
+  font-family: ${getFontFamily({}, 'inherit')};
+  font-weight: ${getFontWeight({}, 'normal')};
+  font-size: ${getFontSize({}, '1.6rem')};
+  letter-spacing: ${getLetterSpacing({}, '0.025em')};
   background: none;
   border: none;
   cursor: pointer;
 
-  ${condition(({ tw }) => tw && tw.state === 'strong')`
-    font-weight: ${getFontWeight('button.expander_strong', 'bold')};
+  ${condition('isExpanded')`
+    background-color: ${getBackgroundColor({ suffix: '-expanded' }, 'initial')};
+    color: ${getColor({ suffix: '-expanded' }, 'inherit')};
+    font-weight: ${getFontWeight({ suffix: '-expanded' }, 'normal')};
+  `}
+
+  ${breakpoint(1)`
+    padding-top: ${getPaddingTop({}, '0')};
+    padding-right: ${getPaddingRight({}, '0')};
+    padding-bottom: ${getPaddingBottom({}, '0')};
+    padding-left: ${getPaddingLeft({}, '0')};
+    margin-top: ${getMarginTop({}, '0')};
+    margin-right: ${getMarginRight({}, '0')};
+    margin-bottom: ${getMarginBottom({}, '0')};
+    margin-left: ${getMarginLeft({}, '0')};
+    background-color: ${getBackgroundColor({}, 'initial')};
+    color: ${getColor({}, 'inherit')};
+    font-family: ${getFontFamily({}, 'inherit')};
+    font-weight: ${getFontWeight({}, 'normal')};
+    font-size: ${getFontSize({}, '1.6rem')};
+    letter-spacing: ${getLetterSpacing({}, '0.025em')};
+    ${condition('isExpanded')`
+      background-color: ${getBackgroundColor({ suffix: '-expanded' }, 'initial')};
+      color: ${getColor({ suffix: '-expanded' }, 'inherit')};
+      font-weight: ${getFontWeight({ suffix: '-expanded' }, 'normal')};
+  `}
   `}
 `
+
+StyledButton.defaultProps = {
+  tw: { semKey: 'button', variant: 'expander' }
+}
 const MoreButton = (props) => {
   const { innerRef, isExpanded, text, ...remProps } = props
   return (
-    <StyledButton {...remProps} ref={innerRef} type="button" tabIndex="0">
+    <StyledButton {...remProps}
+      isExpanded={isExpanded}
+      ref={innerRef}
+      type="button"
+      tabIndex="0"
+    >
       {isExpanded ? `- ${text}` : `+ ${text}`}
     </StyledButton>
   )
