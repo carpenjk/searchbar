@@ -116,6 +116,7 @@ const SearchBarMenu = (props) => {
             isExpanded={showButtons}
             hideRight={[false, isFiltersOpen]}
             innerRef={searchBarBgRef}
+            isFiltersOpen={isFiltersOpen}
           />
           <MenuContainer
             menuContainerRef={menuContainerRef}

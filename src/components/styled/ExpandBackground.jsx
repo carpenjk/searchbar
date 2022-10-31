@@ -53,10 +53,9 @@ StyledBackground.defaultProps = {
 }
 
 const ExpandBackground = (props) => {
-  const { isExpanded, innerRef, menuContainerRef, searchBarRef } = props
+  const { isExpanded, innerRef, isFiltersOpen, menuContainerRef } = props
   const menuElement = menuContainerRef ? menuContainerRef.current : undefined
-  const searchBarElement = menuContainerRef ? searchBarRef.current : undefined
-  const hasVerticalScroll = useHasVerticalScrollbar(menuElement, searchBarElement)
+  const hasVerticalScroll = useHasVerticalScrollbar(menuElement, [isFiltersOpen])
 
   return (
     <StyledBackground
