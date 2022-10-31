@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react'
 
 const useHasVerticalScrollbar = (elem, boundingParent) => {
   const [hasScrollbar, setHasScrollbar] = useState(false)
-  if (!elem || !boundingParent) {
-    return false
-  }
-
   function calcHasScrollbar () {
     if (typeof elem.innerWidth === 'number') {
+      if (!elem || !boundingParent) {
+        setHasScrollbar(false)
+        return
+      }
       setHasScrollbar(elem.innerHeight > boundingParent.innerHeight)
     }
   }
