@@ -1,8 +1,6 @@
-import { useEffect, useLayoutEffect } from 'react'
+import useIsoLayoutEffect from './useIsoLayoutEffect'
 
 const useIsoOnClickOutside = (ref, handler, deps) => {
-  const useIsoLayoutEffect =
-    typeof window !== 'undefined' ? useLayoutEffect : useEffect
   useIsoLayoutEffect(() => {
     const domRef = ref ? ref.current || ref : undefined
     const listener = (event) => {
