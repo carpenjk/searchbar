@@ -1,7 +1,7 @@
 // hooks
 import React, { useContext, useRef } from 'react'
 import { Form } from 'formik'
-import useIsoOnClickOutside from './hooks/useIsoLayoutEffect'
+import useIsoOnClickOutside from './hooks/useIsoOnClickOutside'
 import { SearchBarContext } from './context/SearchBarContext'
 
 // components
