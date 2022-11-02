@@ -44,13 +44,13 @@
     "eslint-plugin-react": "^7.30.1",
     "rimraf": "^3.0.2",
     "semantic-release": "^19.0.5",
-    "standard-version": "^9.5.0"
+    "standard-version": "^9.5.0",
+    "body-scroll-lock": "^3.1.5"
   },
   "peerDependencies": {
     "@carpenjk/hooks": "^0.1.2",
     "@carpenjk/prop-x": "^2.0.2",
     "@carpenjk/themeweaver": "^1.0.2",
-    "body-scroll-lock": "^3.1.5",
     "formik": "^2.2.9",
     "react": "17 - 18",
     "react-dom": "17 - 18",
