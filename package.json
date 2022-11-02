@@ -1,6 +1,6 @@
 {
   "name": "@carpenjk/searchbar",
-  "version": "0.1.0",
+  "version": "0.0.0-development",
   "description": "A react searchbar component",
   "main": "lib/index.js",
   "scripts": {
@@ -8,11 +8,12 @@
     "build": "babel src -d lib",
     "prepublish": "npm run build",
     "commit": "git-cz",
-    "release": "standard-version"
+    "release": "standard-version",
+    "semantic-release": "semantic-release"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/carpenjk/searchbar.git"
+    "url": "https://github.com/carpenjk/searchbar.git"
   },
   "release": {
     "branches": [
