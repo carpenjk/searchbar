@@ -1,8 +1,7 @@
 // hooks
-import React, { useContext, useRef } from 'react'
+import React, { useRef } from 'react'
 import { Form } from 'formik'
 import { useIsoOnClickOutside } from '@carpenjk/hooks'
-import { SearchBarContext } from './context/SearchBarContext'
 
 // components
 import SearchBarContainer from './styled/SearchBarContainer'
@@ -15,6 +14,7 @@ import InputGroup from './styled/InputGroup'
 import MenuContainer from './styled/MenuContainer'
 import SearchFieldsContainer from './styled/SearchFieldsContainer'
 import ButtonContainer from './styled/ButtonContainer'
+import useSearchBar from './context/useSeachBar'
 
 // global var
 const DEFAULT_OFFSET_TOP_PX = 20
@@ -33,7 +33,7 @@ const SearchBarMenu = (props) => {
   } = props
   //* context *********************************************************
 
-  const { searchState, options } = useContext(SearchBarContext)
+  const { searchState, options } = useSearchBar()
   const {
     brAllOpenMode,
     brHideOnSearch,
