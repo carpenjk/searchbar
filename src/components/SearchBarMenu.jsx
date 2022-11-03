@@ -38,7 +38,8 @@ const SearchBarMenu = (props) => {
     brAllOpenMode,
     brHideOnSearch,
     brKeepOpenOnSearch,
-    breakpointToWrap
+    breakpointToWrap,
+    brSearchOnExit
   } = options
   const {
     isOpen,
@@ -92,6 +93,9 @@ const SearchBarMenu = (props) => {
       return
     }
     setIsOpen(false)
+    if (brSearchOnExit) {
+      onSearch()
+    }
   }
   //* hooks/lifecycle
   useIsoOnClickOutside(searchBarRef, onClickOutsideEffect, [isStarted])
