@@ -47,6 +47,7 @@ const SearchBarInnerProvider = ({
 
   // state
   const { values } = useFormikContext()
+  const [isValuesChanged, setIsValuesChanged] = useState(false)
   const [isStarted, setIsStarted] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const [isHidden, setIsHidden] = useState(hideOnMount || false)
@@ -143,6 +144,7 @@ const SearchBarInnerProvider = ({
 
   useEffect(() => {
     setIsStarted(searchHasValues())
+    setIsValuesChanged(true)
   }, [values])
 
   return (
@@ -190,6 +192,8 @@ const SearchBarInnerProvider = ({
           isSecondaryWidth,
           setCurrentInputElement,
           values,
+          isValuesChanged,
+          setIsValuesChanged,
           isFieldsWrapped: breakpoints.current.width < breakpoints.br[breakpointToWrap],
           onExit: handleExit,
           search

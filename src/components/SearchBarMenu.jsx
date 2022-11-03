@@ -55,7 +55,9 @@ const SearchBarMenu = (props) => {
     setIsSearchBarFocused,
     setCurrentInputElement,
     search,
-    values
+    values,
+    isValuesChanged,
+    setIsValuesChanged
   } = searchState
 
   //* Dom References ***********************************************
@@ -86,6 +88,7 @@ const SearchBarMenu = (props) => {
     if (!brKeepOpenOnSearch) {
       setIsOpen(false)
     }
+    setIsValuesChanged(false)
   }
 
   const onClickOutsideEffect = () => {
@@ -95,7 +98,7 @@ const SearchBarMenu = (props) => {
       return
     }
     setIsOpen(false)
-    if (brSearchOnExit) {
+    if (brSearchOnExit && isValuesChanged) {
       search(values)
       onSearch()
     }
