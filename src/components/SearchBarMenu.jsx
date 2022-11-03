@@ -53,7 +53,9 @@ const SearchBarMenu = (props) => {
     showButtons,
     isSearchBarFocused,
     setIsSearchBarFocused,
-    setCurrentInputElement
+    setCurrentInputElement,
+    search,
+    values
   } = searchState
 
   //* Dom References ***********************************************
@@ -94,6 +96,7 @@ const SearchBarMenu = (props) => {
     }
     setIsOpen(false)
     if (brSearchOnExit) {
+      search(values)
       onSearch()
     }
   }
