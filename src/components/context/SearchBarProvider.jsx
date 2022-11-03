@@ -8,7 +8,7 @@ const SearchBarProvider = (props) => {
     validationSchema,
     search,
     children,
-    options
+    ...providerProps
   } = props
   return (
     <Formik
@@ -16,7 +16,7 @@ const SearchBarProvider = (props) => {
       validationSchema={validationSchema}
       onSubmit={search}
     >
-      <SearchBarInnerProvider search={search} options={options}>
+      <SearchBarInnerProvider search={search} {...providerProps}>
         {children}
       </SearchBarInnerProvider>
     </Formik>

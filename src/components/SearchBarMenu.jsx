@@ -1,8 +1,7 @@
 // hooks
-import React, { useContext, useRef } from 'react'
+import React, { useRef } from 'react'
 import { Form } from 'formik'
 import useIsoOnClickOutside from './hooks/useIsoOnClickOutside'
-import { SearchBarContext } from './context/SearchBarContext'
 
 // components
 import SearchBarContainer from './styled/SearchBarContainer'
@@ -15,6 +14,7 @@ import InputGroup from './styled/InputGroup'
 import MenuContainer from './styled/MenuContainer'
 import SearchFieldsContainer from './styled/SearchFieldsContainer'
 import ButtonContainer from './styled/ButtonContainer'
+import useSearchBar from './context/useSeachBar'
 
 // global var
 const DEFAULT_OFFSET_TOP_PX = 20
@@ -33,12 +33,13 @@ const SearchBarMenu = (props) => {
   } = props
   //* context *********************************************************
 
-  const { searchState, options } = useContext(SearchBarContext)
+  const { searchState, options } = useSearchBar()
   const {
     brAllOpenMode,
     brHideOnSearch,
     brKeepOpenOnSearch,
-    breakpointToWrap
+    breakpointToWrap,
+    brSearchOnExit
   } = options
   const {
     isOpen,
@@ -52,7 +53,11 @@ const SearchBarMenu = (props) => {
     showButtons,
     isSearchBarFocused,
     setIsSearchBarFocused,
-    setCurrentInputElement
+    setCurrentInputElement,
+    search,
+    values,
+    isValuesChanged,
+    setIsValuesChanged
   } = searchState
 
   //* Dom References ***********************************************
@@ -83,6 +88,7 @@ const SearchBarMenu = (props) => {
     if (!brKeepOpenOnSearch) {
       setIsOpen(false)
     }
+    setIsValuesChanged(false)
   }
 
   const onClickOutsideEffect = () => {
@@ -92,6 +98,10 @@ const SearchBarMenu = (props) => {
       return
     }
     setIsOpen(false)
+    if (brSearchOnExit && isValuesChanged) {
+      search(values)
+      onSearch()
+    }
   }
   //* hooks/lifecycle
   useIsoOnClickOutside(searchBarRef, onClickOutsideEffect, [isStarted])

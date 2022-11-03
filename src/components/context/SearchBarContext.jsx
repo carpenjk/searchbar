@@ -27,13 +27,15 @@ const SearchBarInnerProvider = ({
     useIsStartedState = false,
     keepOpenOnSearch = false,
     openOnMount = false,
-    secondaryOpenBreakpoint = 1
+    secondaryOpenBreakpoint = 1,
+    searchOnExit = false
   } = options || {}
 
   const hasMounted = useHasMounted()
   const breakpoints = useBreakpoints(theme.breakpoints)
   const isSecondaryWidth = breakpoints.current.width >= breakpoints.br[secondaryOpenBreakpoint]
 
+  // br state
   const [brAllOpenMode, setBrAllOpenMode] = useState(getIndexedPropValue(allOpenMode, breakpoints.indexOfLower))
   const [brAlwaysShowButtons, setBrAlwaysShowButtons] = useState(getIndexedPropValue(alwaysShowButtons, breakpoints.indexOfLower))
   const [brHideOnMount, setBrHideOnMount] = useState(getIndexedPropValue(hideOnMount, breakpoints.indexOfLower))
@@ -41,9 +43,11 @@ const SearchBarInnerProvider = ({
   const [brUseIsStartedState, setBrUseIsStartedState] = useState(getIndexedPropValue(useIsStartedState, breakpoints.indexOfLower))
   const [brKeepOpenOnSearch, setBrKeepOpenOnSearch] = useState(getIndexedPropValue(keepOpenOnSearch, breakpoints.indexOfLower))
   const [brOpenOnMount, setBrOpenOnMount] = useState(getIndexedPropValue(openOnMount, breakpoints.indexOfLower))
+  const [brSearchOnExit, setBrSearchOnExit] = useState(getIndexedPropValue(searchOnExit, breakpoints.indexOfLower))
 
   // state
   const { values } = useFormikContext()
+  const [isValuesChanged, setIsValuesChanged] = useState(false)
   const [isStarted, setIsStarted] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const [isHidden, setIsHidden] = useState(hideOnMount || false)
@@ -66,6 +70,7 @@ const SearchBarInnerProvider = ({
     setBrUseIsStartedState(getIndexedPropValue(useIsStartedState, breakpoints.indexOfLower))
     setBrKeepOpenOnSearch(getIndexedPropValue(keepOpenOnSearch, breakpoints.indexOfLower))
     setBrOpenOnMount(getIndexedPropValue(openOnMount, breakpoints.indexOfLower))
+    setBrSearchOnExit(getIndexedPropValue(searchOnExit, breakpoints.indexOfLower))
   }, [breakpoints.indexOfLower])
 
   // mounting effects
@@ -139,6 +144,7 @@ const SearchBarInnerProvider = ({
 
   useEffect(() => {
     setIsStarted(searchHasValues())
+    setIsValuesChanged(true)
   }, [values])
 
   return (
@@ -155,12 +161,14 @@ const SearchBarInnerProvider = ({
           brHideOnMount,
           hideOnSearch,
           brHideOnSearch,
-          secondaryOpenBreakpoint,
           keepOpenOnSearch,
           brKeepOpenOnSearch,
           useIsStartedState,
           brUseIsStartedState,
-          breakpointToWrap
+          breakpointToWrap,
+          secondaryOpenBreakpoint,
+          searchOnExit,
+          brSearchOnExit
         },
         searchState: {
           breakpoints,
@@ -184,6 +192,8 @@ const SearchBarInnerProvider = ({
           isSecondaryWidth,
           setCurrentInputElement,
           values,
+          isValuesChanged,
+          setIsValuesChanged,
           isFieldsWrapped: breakpoints.current.width < breakpoints.br[breakpointToWrap],
           onExit: handleExit,
           search
