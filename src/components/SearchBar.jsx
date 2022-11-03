@@ -5,7 +5,6 @@ import { SearchBarInnerProvider } from './context/SearchBarContext'
 
 const SearchBar = ({
   initialValues,
-  allOpenMode,
   search,
   validationSchema,
   theme,
@@ -18,7 +17,7 @@ const SearchBar = ({
         validationSchema={validationSchema}
         onSubmit={search}
       >
-        <SearchBarInnerProvider allOpenMode={allOpenMode} search={search} options={options} theme={theme}>
+        <SearchBarInnerProvider search={search} options={options} theme={theme}>
           <SearchBarMenu {...props} />
         </SearchBarInnerProvider>
       </Formik>
