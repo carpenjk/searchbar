@@ -39,9 +39,9 @@ const StyledButton = styled.button`
   cursor: pointer;
 
   ${condition('isExpanded')`
-    background-color: ${getBackgroundColor({ suffix: '-expanded' }, 'initial')};
-    color: ${getColor({ suffix: '-expanded' }, 'inherit')};
-    font-weight: ${getFontWeight({ suffix: '-expanded' }, 'normal')};
+    background-color: ${getBackgroundColor({ suffix: '-expanded' }, '')};
+    color: ${getColor({ suffix: '-expanded' }, '')};
+    font-weight: ${getFontWeight({ suffix: '-expanded' }, '')};
   `}
 
   ${breakpoint(1)`
@@ -60,9 +60,9 @@ const StyledButton = styled.button`
     font-size: ${getFontSize({}, '1.6rem')};
     letter-spacing: ${getLetterSpacing({}, '0.025em')};
     ${condition('isExpanded')`
-      background-color: ${getBackgroundColor({ suffix: '-expanded' }, 'initial')};
-      color: ${getColor({ suffix: '-expanded' }, 'inherit')};
-      font-weight: ${getFontWeight({ suffix: '-expanded' }, 'normal')};
+      background-color: ${getBackgroundColor({ suffix: '-expanded' }, '')};
+      color: ${getColor({ suffix: '-expanded' }, '')};
+      font-weight: ${getFontWeight({ suffix: '-expanded' }, '')};
   `}
   `}
 `
