@@ -26,8 +26,6 @@ StyledInputGroup.defaultProps = {
 
 const InputGroup = (props) => {
   const { hide, children } = props
-  console.log('🚀 ~ file: InputGroup.jsx ~ line 29 ~ InputGroup ~ hide', hide)
-
   return (
     <StyledInputGroup hide={hide}>
       {children}
