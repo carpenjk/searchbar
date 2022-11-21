@@ -1,10 +1,7 @@
 import React from 'react'
 import FiltersContainer from './styled/FiltersContainer'
 
-const SearchFilters = (props) => {
-  const { isScrollable, FilterFields, isFiltersOpen } = props
-  //* context *********************************************************
-
+const SearchFilters = ({ searchState: { isFiltersOpen }, isScrollable, FilterFields }) => {
   return (
     <FiltersContainer
       isSearchFiltersOpen={isFiltersOpen}
