@@ -37,11 +37,8 @@ const SearchBarInnerProvider = ({
 
   // br state
   const [brAllOpenMode, setBrAllOpenMode] = useState(getIndexedPropValue(allOpenMode, breakpoints.indexOfLower))
-  console.log('🚀 ~ file: SearchBarContext.jsx ~ line 40 ~ breakpoints', breakpoints)
-  console.log('🚀 ~ file: SearchBarContext.jsx ~ line 40 ~ getIndexedPropValue(allOpenMode, breakpoints.indexOfLower)', getIndexedPropValue(allOpenMode, breakpoints.indexOfLower))
   const [brAlwaysShowButtons, setBrAlwaysShowButtons] = useState(getIndexedPropValue(alwaysShowButtons, breakpoints.indexOfLower))
   const [brHideOnMount, setBrHideOnMount] = useState(getIndexedPropValue(hideOnMount, breakpoints.indexOfLower))
-  console.log('🚀 ~ file: SearchBarContext.jsx ~ line 43 ~ getIndexedPropValue(hideOnMount, breakpoints.indexOfLower)', getIndexedPropValue(hideOnMount, breakpoints.indexOfLower))
   const [brHideOnSearch, setBrHideOnSearch] = useState(getIndexedPropValue(hideOnSearch, breakpoints.indexOfLower))
   const [brUseIsStartedState, setBrUseIsStartedState] = useState(getIndexedPropValue(useIsStartedState, breakpoints.indexOfLower))
   const [brKeepOpenOnSearch, setBrKeepOpenOnSearch] = useState(getIndexedPropValue(keepOpenOnSearch, breakpoints.indexOfLower))
