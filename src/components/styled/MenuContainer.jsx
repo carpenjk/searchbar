@@ -1,10 +1,10 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { breakpoint, condition } from '@carpenjk/prop-x/css'
 import { getBackgroundColor, getPaddingBottom, getPaddingLeft, getPaddingRight, getPaddingTop } from '@carpenjk/themeweaver'
 
 const StyledMenuContainer = styled.div`
-  overflow-y: auto;
+  overflow-y: visible;
   background-color: ${getBackgroundColor({}, 'initial')};
   padding-top: ${getPaddingTop({}, '0')};
   padding-right: ${getPaddingRight({}, '0')};
