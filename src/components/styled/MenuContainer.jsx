@@ -11,6 +11,7 @@ const StyledMenuContainer = styled.div`
   padding-bottom: ${getPaddingBottom({}, '0')};
   padding-left: ${getPaddingLeft({}, '0')};
   ${condition('isFiltersOpen')`
+    overflow-y: auto;
     background-color: ${getBackgroundColor({ suffix: '-isFiltersOpen' }, 'initial')};
     padding-top: ${getPaddingTop({ suffix: '-isFiltersOpen' }, '4px')};
     padding-right: ${getPaddingRight({ suffix: '-isFiltersOpen' }, '4px')};
