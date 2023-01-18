@@ -134,71 +134,73 @@ const SearchBarInnerProvider = ({
     return valuesNotBlank
   }
 
-  function handleExit () {
-    if (onExit) {
-      onExit()
-      return
-    }
-    setIsOpen(false)
-  }
-
   useEffect(() => {
     setIsStarted(searchHasValues())
     setIsValuesChanged(true)
   }, [values])
 
+  const searchbar = {
+    options: {
+      allOpenMode,
+      brAllOpenMode,
+      alwaysShowButtons,
+      brAlwaysShowButtons,
+      openOnMount,
+      brOpenOnMount,
+      hideOnMount,
+      brHideOnMount,
+      hideOnSearch,
+      brHideOnSearch,
+      keepOpenOnSearch,
+      brKeepOpenOnSearch,
+      useIsStartedState,
+      brUseIsStartedState,
+      breakpointToWrap,
+      secondaryOpenBreakpoint,
+      searchOnExit,
+      brSearchOnExit
+    },
+    searchState: {
+      breakpoints,
+      isOpen,
+      setIsOpen,
+      isHidden,
+      setIsHidden,
+      isPrimaryOpen,
+      setIsPrimaryOpen,
+      isSecondaryOpen,
+      setIsSecondaryOpen,
+      isFiltersOpen,
+      setIsFiltersOpen,
+      isStarted,
+      setIsStarted,
+      showButtons,
+      setShowButtons,
+      isSearchBarFocused,
+      setIsSearchBarFocused,
+      currentInputElement,
+      isSecondaryWidth,
+      setCurrentInputElement,
+      values,
+      isValuesChanged,
+      setIsValuesChanged,
+      isFieldsWrapped: breakpoints.current.width < breakpoints.br[breakpointToWrap],
+      exit,
+      search
+    }
+  }
+
+  function exit () {
+    if (onExit) {
+      onExit(searchbar)
+      return
+    }
+    setIsOpen(false)
+  }
+
   return (
     <SearchBarContext.Provider
-      value={{
-        options: {
-          allOpenMode,
-          brAllOpenMode,
-          alwaysShowButtons,
-          brAlwaysShowButtons,
-          openOnMount,
-          brOpenOnMount,
-          hideOnMount,
-          brHideOnMount,
-          hideOnSearch,
-          brHideOnSearch,
-          keepOpenOnSearch,
-          brKeepOpenOnSearch,
-          useIsStartedState,
-          brUseIsStartedState,
-          breakpointToWrap,
-          secondaryOpenBreakpoint,
-          searchOnExit,
-          brSearchOnExit
-        },
-        searchState: {
-          breakpoints,
-          isOpen,
-          setIsOpen,
-          isHidden,
-          setIsHidden,
-          isPrimaryOpen,
-          setIsPrimaryOpen,
-          isSecondaryOpen,
-          setIsSecondaryOpen,
-          isFiltersOpen,
-          setIsFiltersOpen,
-          isStarted,
-          setIsStarted,
-          showButtons,
-          setShowButtons,
-          isSearchBarFocused,
-          setIsSearchBarFocused,
-          currentInputElement,
-          isSecondaryWidth,
-          setCurrentInputElement,
-          values,
-          isValuesChanged,
-          setIsValuesChanged,
-          isFieldsWrapped: breakpoints.current.width < breakpoints.br[breakpointToWrap],
-          onExit: handleExit,
-          search
-        }
-      }}
+      value={searchbar}
     >
       {children}
     </SearchBarContext.Provider>

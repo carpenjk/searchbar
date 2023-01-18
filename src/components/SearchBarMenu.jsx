@@ -28,8 +28,7 @@ const SearchBarMenu = (props) => {
     checkFilters,
     FilterFields,
     PrimarySearchFields,
-    SecondarySearchFields,
-    onExit
+    SecondarySearchFields
   } = props
   //* context *********************************************************
 
@@ -57,7 +56,8 @@ const SearchBarMenu = (props) => {
     search,
     values,
     isValuesChanged,
-    setIsValuesChanged
+    setIsValuesChanged,
+    exit
   } = searchState
 
   //* Dom References ***********************************************
@@ -93,10 +93,7 @@ const SearchBarMenu = (props) => {
 
   const onClickOutsideEffect = () => {
     setIsSearchBarFocused(false)
-    if (onExit) {
-      onExit()
-      return
-    }
+    exit()
     if (brSearchOnExit && isValuesChanged) {
       search(values)
       onSearch()
