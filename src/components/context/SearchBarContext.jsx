@@ -3,7 +3,7 @@ import React, {
   useEffect,
   useRef
 } from 'react'
-import { useBreakpoints } from '@carpenjk/prop-x/useBreakpoints'
+import { useBreakpoints } from '@carpenjk/use-breakpoints'
 import { useFormikContext } from 'formik'
 import { getIndexedPropValue } from '@carpenjk/prop-x'
 import useHasMounted from '../hooks/useHasMounted'
