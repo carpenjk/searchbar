@@ -83,7 +83,7 @@ const SearchBarMenu = (props) => {
 
   const onSearch = () => {
     if (brHideOnSearch) {
-      setIsHidden(false)
+      setIsHidden(true)
     }
     if (!brKeepOpenOnSearch) {
       setIsOpen(false)
@@ -97,7 +97,6 @@ const SearchBarMenu = (props) => {
       onExit()
       return
     }
-    setIsOpen(false)
     if (brSearchOnExit && isValuesChanged) {
       search(values)
       onSearch()

@@ -139,7 +139,7 @@ const SearchBarInnerProvider = ({
       onExit()
       return
     }
-    close()
+    setIsOpen(false)
   }
 
   useEffect(() => {
