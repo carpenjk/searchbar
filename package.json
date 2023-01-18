@@ -46,7 +46,7 @@
     "semantic-release": "^19.0.5"
   },
   "peerDependencies": {
-    "@carpenjk/prop-x": "^3.0.1",
+    "@carpenjk/prop-x": "^3.0.1 || ^2.0.0",
     "@carpenjk/use-breakpoints": "^1.0.0",
     "@carpenjk/themeweaver": "^1.0.2",
     "formik": "^2.2.9",
