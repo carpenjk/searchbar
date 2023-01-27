@@ -138,7 +138,7 @@ const SearchBarContainer = (props) => {
       return
     }
     if (searchBarRef?.current) {
-      searchBarRef.style.width = currWidth - parseInt(getPaddingRight({ theme }, '8'))
+      searchBarRef.current.style.width = currWidth - parseInt(getPaddingRight({ theme }, '8'))
       if (isWidthAdjusted) {
         setIsWidthAdjusted(false)
       }
