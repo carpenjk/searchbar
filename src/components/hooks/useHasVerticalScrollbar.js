@@ -11,6 +11,7 @@ const useHasVerticalScrollbar = (elem, deps, onChange) => {
       if (!elem) {
         setHasScrollbar(false)
         if (prevHasScrollbar !== false && typeof onChange === 'function') {
+          console.log('onChange:', false)
           onChange(false)
         }
         return
