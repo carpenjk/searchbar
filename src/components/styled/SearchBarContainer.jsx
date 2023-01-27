@@ -1,5 +1,6 @@
-import React from 'react'
-import styled from 'styled-components'
+import React, { useState } from 'react'
+import styled, { useTheme } from 'styled-components'
+
 import {
   getBackgroundColor,
   getBorderRadius,
@@ -30,9 +31,6 @@ const StyledSearchBar = styled.div`
   max-width: ${getMaxWidth({}, 'none')};
   z-index: 999999;
 
-  ${condition('leftAdjust')`
-    left: calc(50% + ${getPaddingRight({}, '8px')});
-  `}
   ${condition('hide')`
     display: none;
   `}
@@ -73,9 +71,6 @@ const StyledSearchBar = styled.div`
     max-Height: ${getMaxHeight({}, '82vh')};
     border-radius: ${getBorderRadius({}, '8px')};
 
-    ${condition('leftAdjust')`
-      left: calc(50% + ${getPaddingRight({}, '8px')});
-    `}
     ${condition('hide')`
       display: none;
     `}
@@ -130,7 +125,24 @@ const SearchBarContainer = (props) => {
   } = props
   const mergedTW = { ...DEFAULT_TW, ...tw }
   const scrollElement = menuContainerRef?.current
-  const hasVerticalScroll = useHasVerticalScrollbar(scrollElement, [isOpen, isSecondaryOpen, isFiltersOpen])
+  const theme = useTheme()
+  const [isWidthAdjusted, setIsWidthAdjusted] = useState(false)
+
+  function adjustWidth (needsAdjust) {
+    const currWidth = searchBarRef?.current?.clientWidth
+    if (needsAdjust && !isWidthAdjusted) {
+      searchBarRef.style.width = currWidth + parseInt(getPaddingRight({ theme }, '8'))
+      setIsWidthAdjusted(true)
+      return
+    }
+    searchBarRef.style.width = currWidth - parseInt(getPaddingRight({ theme }, '8'))
+    if (isWidthAdjusted) {
+      setIsWidthAdjusted(false)
+    }
+  }
+
+  useHasVerticalScrollbar(scrollElement, [isOpen, isSecondaryOpen, isFiltersOpen], adjustWidth)
+
   return (
     <StyledSearchBar
       tw={mergedTW}
@@ -139,7 +151,6 @@ const SearchBarContainer = (props) => {
       isSearchBarFocused={isSearchBarFocused}
       isSecondaryOpen={isSecondaryOpen}
       offsetTop={offsetTop}
-      leftAdjust={hasVerticalScroll}
       hide={isHidden}
       ref={searchBarRef}
     >
