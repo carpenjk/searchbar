@@ -30,7 +30,7 @@ const StyledSearchBar = styled.div`
   z-index: 999999;
 
   ${condition('leftAdjust')`
-    left: calc(50% + ${getProp('padding-right')};)
+    left: calc(50% + ${getProp('padding-right', '8px')});
   `}
   ${condition('hide')`
     display: none;
@@ -73,7 +73,7 @@ const StyledSearchBar = styled.div`
     border-radius: ${getBorderRadius({}, '8px')};
 
     ${condition('leftAdjust')`
-      left: calc(50% + ${getProp('padding-right')};)
+      left: calc(50% + ${getProp('padding-right', '8px')});
     `}
     ${condition('hide')`
       display: none;
