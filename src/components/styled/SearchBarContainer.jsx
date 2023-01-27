@@ -127,7 +127,6 @@ const SearchBarContainer = (props) => {
   const scrollElement = menuContainerRef?.current
   const theme = useTheme()
   const [isWidthAdjusted, setIsWidthAdjusted] = useState(false)
-  const [widthAdjust, setWidthAdjust] = useState()
 
   const adjustWidth = useCallback((needsAdjust) => {
     console.log('adjustWidth start')
@@ -138,7 +137,6 @@ const SearchBarContainer = (props) => {
         console.log('adjusting width:', (currWidth + adjustValue) + 'px')
         searchBarRef.current.style.width = (currWidth + adjustValue) + 'px'
         searchBarRef.current.style.maxwidth = (currWidth + adjustValue) + 'px'
-        setWidthAdjust(currWidth + adjustValue)
         setIsWidthAdjusted(true)
       }
       return
@@ -148,13 +146,12 @@ const SearchBarContainer = (props) => {
         searchBarRef.current.style.width = (currWidth - adjustValue) + 'px'
         searchBarRef.current.style.maxWidth = (currWidth - adjustValue) + 'px'
         console.log('adjusting width:', (currWidth - adjustValue) + 'px')
-        setWidthAdjust((currWidth - adjustValue) + 'px')
         setIsWidthAdjusted(false)
       }
     }
   }, [])
 
-  useHasVerticalScrollbar(scrollElement, [isOpen, isSecondaryOpen, isFiltersOpen], adjustWidth)
+  useHasVerticalScrollbar(scrollElement, [], adjustWidth)
 
   return (
     <StyledSearchBar
@@ -166,7 +163,6 @@ const SearchBarContainer = (props) => {
       offsetTop={offsetTop}
       hide={isHidden}
       ref={searchBarRef}
-      style={{ width: widthAdjust + 'px', maxWidth: widthAdjust + 'px' }}
     >
       {children}
     </StyledSearchBar>

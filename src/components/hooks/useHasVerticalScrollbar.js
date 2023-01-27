@@ -7,6 +7,7 @@ const useHasVerticalScrollbar = (elem, deps, onChange) => {
 
   useEffect(() => {
     function calcHasScrollbar () {
+      console.log('calcHasScrollbar')
       if (!elem) {
         setHasScrollbar(false)
         if (prevHasScrollbar !== false && typeof onChange === 'function') {
@@ -15,6 +16,7 @@ const useHasVerticalScrollbar = (elem, deps, onChange) => {
         return
       }
       const newHasScrollbar = elem.scrollHeight > elem.clientHeight
+      console.log('calcHasScrollbar:', newHasScrollbar)
       setHasScrollbar(newHasScrollbar)
       if (prevHasScrollbar !== newHasScrollbar && typeof onChange === 'function') {
         onChange(newHasScrollbar)
