@@ -9,14 +9,14 @@ const useHasVerticalScrollbar = (elem, deps, onChange) => {
     function calcHasScrollbar () {
       if (!elem) {
         setHasScrollbar(false)
-        if (prevHasScrollbar !== false) {
+        if (prevHasScrollbar !== false && typeof onChange === 'function') {
           onChange(false)
         }
         return
       }
       const newHasScrollbar = elem.scrollHeight > elem.clientHeight
       setHasScrollbar(newHasScrollbar)
-      if (prevHasScrollbar !== newHasScrollbar) {
+      if (prevHasScrollbar !== newHasScrollbar && typeof onChange === 'function') {
         onChange(newHasScrollbar)
       }
     }
