@@ -16,7 +16,7 @@ const StyledSearchBar = styled.div`
   flex: none;
   position: absolute;
   top: ${getProp('offsetTop')}px;
-  left: calc(50% + ${getProp('padding-right')});
+  left: 50%;
   display: flex;
   flex-direction: column;
   -webkit-transform: translateX(-50%);
@@ -128,8 +128,7 @@ const SearchBarContainer = (props) => {
     searchBarRef
   } = props
   const mergedTW = { ...DEFAULT_TW, ...tw }
-  const menuContainer = useRef()
-  const hasVerticalScroll = useHasVerticalScrollbar(menuContainer, [isOpen, isSecondaryOpen, isFiltersOpen])
+  const hasVerticalScroll = useHasVerticalScrollbar(searchBarRef, [isOpen, isSecondaryOpen, isFiltersOpen])
   return (
     <StyledSearchBar
       tw={mergedTW}
