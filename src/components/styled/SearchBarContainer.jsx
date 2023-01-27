@@ -6,7 +6,7 @@ import {
   getWidth,
   getMaxHeight,
   getMaxWidth,
-  getMinWidth
+  getHeight
 } from '@carpenjk/themeweaver'
 import { breakpoint, condition, getProp } from '@carpenjk/prop-x/css'
 
@@ -22,24 +22,40 @@ const StyledSearchBar = styled.div`
   box-sizing: content-box;
   background-color: transparent;
   border-radius: ${getBorderRadius({}, '8px')};
+  width: ${getWidth({}, 'auto')};
+  height: ${getHeight({}, 'auto')};
   max-height: ${getMaxHeight({}, '82vh')};
   max-width: ${getMaxWidth({}, 'none')};
-  width: ${getWidth({}, 'auto')};
   z-index: 999999;
 
   ${condition('hide')`
     display: none;
   `}
 
+
   ${condition('isSecondaryOpen')`
-    background-color: ${getBackgroundColor({}, '#F6FEFF')};
-    max-width: ${getProp('openMaxWidth')};
+    background-color: ${getBackgroundColor({ suffix: '-isSecondaryOpen' }, '#F6FEFF')};
+    width: ${getWidth({ suffix: '-isSecondaryOpen' })};
+    height: ${getHeight({ suffix: '-isSecondaryOpen' })};
+    max-width: ${getMaxWidth({ suffix: '-isSecondaryOpen' })};
+    max-height: ${getMaxHeight({ suffix: '-isSecondaryOpen' })};
+  `}
+
+  
+  ${condition('isOpen')`
+    background-color: ${getBackgroundColor({ suffix: '-isOpen' }, '#F6FEFF')};
+    width: ${getWidth({ suffix: '-isOpen' }, '90vw')};
+    height: ${getHeight({ suffix: '-isOpen' }, 'auto')};
+    max-height: ${getMaxHeight({ suffix: '-isOpen' })};
+    max-width: ${getMaxWidth({ suffix: '-isOpen' }, 'none')};
   `}
 
   ${condition('isFiltersOpen')`
-    width: ${getWidth({}, '90vw')};
-    max-width: ${getProp('openMaxWidth')};
-    max-height: ${getMaxHeight({}, '82vh')};
+    background-color: ${getBackgroundColor({ suffix: '-isFiltersOpen' }, '#F6FEFF')};
+    width: ${getWidth({ suffix: '-isFiltersOpen' })};
+    height: ${getHeight({ suffix: '-isFiltersOpen' })};
+    max-width: ${getMaxWidth({ suffix: '-isFiltersOpen' })}};
+    max-height: ${getMaxHeight({ suffix: '-isFiltersOpen' })};
   `} 
 
   ${breakpoint(1)`
@@ -48,22 +64,37 @@ const StyledSearchBar = styled.div`
     background-color: ${getBackgroundColor({}, '#F6FEFF')};
     width: ${getWidth({}, 'auto')};
     max-width: ${getMaxWidth({}, 'none')};
-    min-width: ${getMinWidth({}, '0')};
+    max-Height: ${getMaxHeight({}, '82vh')};
     border-radius: ${getBorderRadius({}, '8px')};
 
     ${condition('hide')`
       display: none;
     `}
 
-    ${condition('isSearchBarFocused')`
-      max-width: ${getProp('openMaxWidth')};
+    ${condition('isSecondaryOpen')`
+      background-color: ${getBackgroundColor({ suffix: '-isSecondaryOpen' }, '#F6FEFF')};
+      width: ${getWidth({ suffix: '-isSecondaryOpen' })};
+      height: ${getHeight({ suffix: '-isSecondaryOpen' })};
+      max-width: ${getMaxWidth({ suffix: '-isSecondaryOpen' })};
+      max-height: ${getMaxHeight({ suffix: '-isSecondaryOpen' })};
+      `}
+
+  
+    ${condition('isOpen')`
+      background-color: ${getBackgroundColor({ suffix: '-isOpen' }, '#F6FEFF')};
+      width: ${getWidth({ suffix: '-isOpen' })};
+      height: ${getHeight({ suffix: '-isOpen' }, 'auto')};
+      max-height: ${getMaxHeight({ suffix: '-isOpen' })};
+      max-width: ${getMaxWidth({ suffix: '-isOpen' })};
     `}
 
     ${condition('isFiltersOpen')`
-      width: ${getWidth({}, '90vw')};
-      max-width: ${getProp('openMaxWidth')};
-      max-height: ${getMaxHeight({}, '82vh')};
-    `}  
+      background-color: ${getBackgroundColor({ suffix: '-isFiltersOpen' }, '#F6FEFF')};
+      width: ${getWidth({ suffix: '-isFiltersOpen' })};
+      height: ${getHeight({ suffix: '-isFiltersOpen' })};
+      max-width: ${getMaxWidth({ suffix: '-isFiltersOpen' })}};
+      max-height: ${getMaxHeight({ suffix: '-isFiltersOpen' })};
+    `} 
 `}
 `
 
@@ -80,6 +111,7 @@ const SearchBarContainer = (props) => {
   const {
     children,
     isHidden,
+    isOpen,
     isFiltersOpen,
     isSecondaryOpen,
     isSearchBarFocused,
@@ -92,6 +124,7 @@ const SearchBarContainer = (props) => {
   return (
     <StyledSearchBar
       tw={mergedTW}
+      isOpen={isOpen}
       isFiltersOpen={isFiltersOpen}
       isSearchBarFocused={isSearchBarFocused}
       isSecondaryOpen={isSecondaryOpen}

@@ -109,6 +109,7 @@ const SearchBarMenu = (props) => {
       <Form autoComplete="off">
         <SearchBarContainer
           isHidden={isHidden}
+          isOpen={isOpen}
           isFiltersOpen={isFiltersOpen}
           isSearchBarFocused={isSearchBarFocused}
           isSecondaryOpen={isSecondaryOpen}

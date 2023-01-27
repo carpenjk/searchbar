@@ -29,8 +29,6 @@ const StyledPopupModal = styled.div`
       `}
     }
   `}
-
-}
 `
 
 const PopupModal = (props) => {
