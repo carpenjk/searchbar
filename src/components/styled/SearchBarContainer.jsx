@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import styled from 'styled-components'
 import {
   getBackgroundColor,
@@ -9,12 +9,13 @@ import {
   getHeight
 } from '@carpenjk/themeweaver'
 import { breakpoint, condition, getProp } from '@carpenjk/prop-x/css'
+import useHasVerticalScrollbar from '../hooks/useHasVerticalScrollbar'
 
 const StyledSearchBar = styled.div`
   flex: none;
   position: absolute;
   top: ${getProp('offsetTop')}px;
-  left: ${getProp('offsetLeft')};
+  left: calc(50% + ${getProp('padding-right')});
   display: flex;
   flex-direction: column;
   -webkit-transform: translateX(-50%);
@@ -28,6 +29,9 @@ const StyledSearchBar = styled.div`
   max-width: ${getMaxWidth({}, 'none')};
   z-index: 999999;
 
+  ${condition('leftAdjust')`
+    left: calc(50% + ${getProp('padding-right')};)
+  `}
   ${condition('hide')`
     display: none;
   `}
@@ -43,6 +47,7 @@ const StyledSearchBar = styled.div`
 
   
   ${condition('isOpen')`
+    left: calc(50% + ${getProp('padding-right')});
     background-color: ${getBackgroundColor({ suffix: '-isOpen' }, '#F6FEFF')};
     width: ${getWidth({ suffix: '-isOpen' }, '90vw')};
     height: ${getHeight({ suffix: '-isOpen' }, 'auto')};
@@ -67,6 +72,9 @@ const StyledSearchBar = styled.div`
     max-Height: ${getMaxHeight({}, '82vh')};
     border-radius: ${getBorderRadius({}, '8px')};
 
+    ${condition('leftAdjust')`
+      left: calc(50% + ${getProp('padding-right')};)
+    `}
     ${condition('hide')`
       display: none;
     `}
@@ -103,8 +111,7 @@ const DEFAULT_TW = {
 }
 
 StyledSearchBar.defaultProps = {
-  position: 'absolute',
-  offsetLeft: '50%'
+  position: 'absolute'
 }
 
 const SearchBarContainer = (props) => {
@@ -116,11 +123,12 @@ const SearchBarContainer = (props) => {
     isSecondaryOpen,
     isSearchBarFocused,
     offsetTop,
-    openMaxWidth,
     tw,
     searchBarRef
   } = props
   const mergedTW = { ...DEFAULT_TW, ...tw }
+  const menuContainer = useRef()
+  const hasVerticalScroll = useHasVerticalScrollbar(menuContainer, [isOpen, isSecondaryOpen, isFiltersOpen])
   return (
     <StyledSearchBar
       tw={mergedTW}
@@ -129,7 +137,7 @@ const SearchBarContainer = (props) => {
       isSearchBarFocused={isSearchBarFocused}
       isSecondaryOpen={isSecondaryOpen}
       offsetTop={offsetTop}
-      openMaxWidth={openMaxWidth}
+      leftAdjust={hasVerticalScroll}
       hide={isHidden}
       ref={searchBarRef}
     >

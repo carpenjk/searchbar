@@ -123,6 +123,8 @@ const SearchBarMenu = (props) => {
             isExpanded={showButtons}
             hideRight={[false, isFiltersOpen]}
             innerRef={searchBarBgRef}
+            isOpen={isOpen}
+            isSecondaryOpen={isSecondaryOpen}
             isFiltersOpen={isFiltersOpen}
           />
           <MenuContainer
