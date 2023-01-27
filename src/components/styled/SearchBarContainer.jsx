@@ -6,7 +6,8 @@ import {
   getWidth,
   getMaxHeight,
   getMaxWidth,
-  getHeight
+  getHeight,
+  getPaddingRight
 } from '@carpenjk/themeweaver'
 import { breakpoint, condition, getProp } from '@carpenjk/prop-x/css'
 import useHasVerticalScrollbar from '../hooks/useHasVerticalScrollbar'
@@ -30,7 +31,7 @@ const StyledSearchBar = styled.div`
   z-index: 999999;
 
   ${condition('leftAdjust')`
-    left: calc(50% + ${getProp('padding-right', '8px')});
+    left: calc(50% + ${getPaddingRight({}, '8px')});
   `}
   ${condition('hide')`
     display: none;
@@ -73,7 +74,7 @@ const StyledSearchBar = styled.div`
     border-radius: ${getBorderRadius({}, '8px')};
 
     ${condition('leftAdjust')`
-      left: calc(50% + ${getProp('padding-right', '8px')});
+      left: calc(50% + ${getPaddingRight({}, '8px')});
     `}
     ${condition('hide')`
       display: none;
