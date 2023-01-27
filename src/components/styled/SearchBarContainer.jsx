@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import {
   getBackgroundColor,
@@ -125,10 +125,11 @@ const SearchBarContainer = (props) => {
     isSearchBarFocused,
     offsetTop,
     tw,
-    searchBarRef
+    searchBarRef,
+    menuContainerRef
   } = props
   const mergedTW = { ...DEFAULT_TW, ...tw }
-  const scrollElement = searchBarRef?.current ?? undefined
+  const scrollElement = menuContainerRef?.current
   const hasVerticalScroll = useHasVerticalScrollbar(scrollElement, [isOpen, isSecondaryOpen, isFiltersOpen])
   return (
     <StyledSearchBar

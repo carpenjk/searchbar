@@ -116,6 +116,7 @@ const SearchBarMenu = (props) => {
           offsetTop={searchBarOffsetTop}
           openMaxWidth={openMaxWidth}
           searchBarRef={searchBarRef}
+          menuContainerRef={menuContainerRef}
         >
           <ExpandedBackground
             searchBarRef={searchBarRef}
