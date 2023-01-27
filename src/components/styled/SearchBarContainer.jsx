@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import styled, { useTheme } from 'styled-components'
 
 import {
@@ -128,7 +128,7 @@ const SearchBarContainer = (props) => {
   const theme = useTheme()
   const [isWidthAdjusted, setIsWidthAdjusted] = useState(false)
 
-  function adjustWidth (needsAdjust) {
+  const adjustWidth = useCallback((needsAdjust) => {
     const currWidth = searchBarRef?.current?.clientWidth
     if (needsAdjust && !isWidthAdjusted) {
       searchBarRef.style.width = currWidth + parseInt(getPaddingRight({ theme }, '8'))
@@ -139,7 +139,7 @@ const SearchBarContainer = (props) => {
     if (isWidthAdjusted) {
       setIsWidthAdjusted(false)
     }
-  }
+  }, [])
 
   useHasVerticalScrollbar(scrollElement, [isOpen, isSecondaryOpen, isFiltersOpen], adjustWidth)
 

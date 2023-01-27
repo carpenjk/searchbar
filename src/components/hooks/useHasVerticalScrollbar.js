@@ -24,7 +24,7 @@ const useHasVerticalScrollbar = (elem, deps, onChange) => {
     window.addEventListener('resize', calcHasScrollbar)
     calcHasScrollbar()
     return () => window.removeEventListener('resize', calcHasScrollbar)
-  }, [elem, ..._deps])
+  }, [elem, onChange, ..._deps])
 
   return (hasScrollbar)
 }
