@@ -130,18 +130,21 @@ const SearchBarContainer = (props) => {
 
   const adjustWidth = useCallback((needsAdjust) => {
     const currWidth = searchBarRef?.current?.clientWidth
+    const adjustValue = parseInt(getPaddingRight({}, 8)({ theme, tw: mergedTW }))
     if (needsAdjust && !isWidthAdjusted) {
       if (searchBarRef?.current) {
-        console.log('adjusting width:', currWidth + parseInt(getPaddingRight({}, 8)({ theme, tw: mergedTW })))
-        searchBarRef.current.style.width = currWidth + parseInt(getPaddingRight({}, 8)({ theme, tw: mergedTW }))
+        console.log('adjusting width:', currWidth + adjustValue)
+        searchBarRef.current.style.width = currWidth + adjustValue
+        searchBarRef.current.style.maxwidth = currWidth + adjustValue
         setIsWidthAdjusted(true)
       }
       return
     }
     if (searchBarRef?.current) {
-      searchBarRef.current.style.width = currWidth - parseInt(getPaddingRight({}, 8)({ theme, tw: mergedTW }))
       if (isWidthAdjusted) {
-        console.log('adjusting width:', currWidth - parseInt(getPaddingRight({}, 8)({ theme, tw: mergedTW })))
+        searchBarRef.current.style.width = currWidth - adjustValue
+        searchBarRef.current.style.maxWidth = currWidth - adjustValue
+        console.log('adjusting width:', currWidth - adjustValue)
         setIsWidthAdjusted(false)
       }
     }
