@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 
 const useHasVerticalScrollbar = (elem, deps, onChange) => {
   const [hasScrollbar, setHasScrollbar] = useState(false)
-  let prevHasScrollbar = useRef(hasScrollbar)
+  const prevHasScrollbar = useRef(hasScrollbar)
   const _deps = deps ? [...deps] : []
 
   useEffect(() => {
@@ -10,18 +10,18 @@ const useHasVerticalScrollbar = (elem, deps, onChange) => {
       console.log('prevHasScrollbar:', prevHasScrollbar)
       if (!elem) {
         setHasScrollbar(false)
-        if (prevHasScrollbar !== false && typeof onChange === 'function') {
+        if (prevHasScrollbar.current !== false && typeof onChange === 'function') {
           console.log('onChange:', false)
           onChange(false)
         }
-        prevHasScrollbar = false
+        prevHasScrollbar.current = false
         return
       }
       const newHasScrollbar = elem.scrollHeight > elem.clientHeight
       console.log('calcHasScrollbar:', newHasScrollbar)
       setHasScrollbar(newHasScrollbar)
       prevHasScrollbar.current = newHasScrollbar
-      if (prevHasScrollbar !== newHasScrollbar && typeof onChange === 'function') {
+      if (prevHasScrollbar.current !== newHasScrollbar && typeof onChange === 'function') {
         console.log('onChange:', newHasScrollbar)
         onChange(newHasScrollbar)
       }
