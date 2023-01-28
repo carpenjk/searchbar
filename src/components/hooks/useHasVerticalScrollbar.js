@@ -5,8 +5,8 @@ const useHasVerticalScrollbar = (elem, deps, onChange) => {
   const prevHasScrollbar = useRef(hasScrollbar)
   const _deps = deps ? [...deps] : []
   const calcHasScrollbar = (onChange) => {
-    const onChange2 = onChange
-    console.log('🚀 ~ file: useHasVerticalScrollbar.js:9 ~ calcHasScrollbar ~ onChange2', onChange2)
+    const onChange3 = onChange
+    console.log('🚀 ~ file: useHasVerticalScrollbar.js:9 ~ calcHasScrollbar ~ onChange3', onChange3)
     console.log('prevHasScrollbar:', prevHasScrollbar)
     if (!elem) {
       setHasScrollbar(false)
@@ -27,9 +27,10 @@ const useHasVerticalScrollbar = (elem, deps, onChange) => {
     prevHasScrollbar.current = newHasScrollbar
   }
   useEffect(() => {
+    const onChange2 = onChange
     window.addEventListener('resize', calcHasScrollbar)
-    calcHasScrollbar(onChange)
-    return () => window.removeEventListener('resize', () => calcHasScrollbar(onChange))
+    calcHasScrollbar(onChange2)
+    return () => window.removeEventListener('resize', () => calcHasScrollbar(onChange2))
   }, [elem, onChange, ..._deps])
 
   return (hasScrollbar)
