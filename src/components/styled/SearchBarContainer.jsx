@@ -151,7 +151,7 @@ const SearchBarContainer = (props) => {
     }
   }, [])
 
-  useHasVerticalScrollbar(scrollElement, [], adjustWidth)
+  const hasVerticalScrollbar = useHasVerticalScrollbar(scrollElement, [], adjustWidth)
 
   return (
     <StyledSearchBar
