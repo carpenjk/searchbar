@@ -5,7 +5,6 @@ const useHasVerticalScrollbar = (elem, deps, onChange) => {
   const prevHasScrollbar = useRef(hasScrollbar)
   const _deps = deps ? [...deps] : []
   const calcHasScrollbar = () => {
-    console.log('🚀 ~ file: useHasVerticalScrollbar.js:9 ~ calcHasScrollbar ~ onChange4', onChange4)
     console.log('prevHasScrollbar:', prevHasScrollbar)
     if (!elem) {
       setHasScrollbar(false)
