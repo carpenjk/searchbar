@@ -7,6 +7,7 @@ const useHasVerticalScrollbar = (elem, deps, onChange) => {
 
   useEffect(() => {
     const calcHasScrollbar = () => {
+      console.log('onChange', onchange)
       console.log('prevHasScrollbar:', prevHasScrollbar)
       if (!elem) {
         setHasScrollbar(false)
