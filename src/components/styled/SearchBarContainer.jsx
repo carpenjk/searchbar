@@ -136,22 +136,22 @@ const SearchBarContainer = (props) => {
     if (searchBarRef.current) {
       const currentStyles = searchBarRef?.current ? window?.getComputedStyle(searchBarRef.current) : undefined
       console.log('🚀 ~ file: SearchBarContainer.jsx:138 ~ adjustWidth ~ currentStyles', currentStyles)
-      // const currWidth = currentStyles.clientWidth
-      // const currLeft = currentStyles.left
+      const currWidth = parseFloat(currentStyles.clientWidth)
+      const currLeft = parseFloat(currentStyles.left)
       const adjustValue = parseInt(getPaddingRight({}, 8)({ theme, tw: mergedTW }))
       if (needsAdjust && !isWidthAdjusted.current) {
-        console.log('adjusting width:', (parseFloat(currentStyles.width) + adjustValue) + 'px')
-        searchBarRef.current.style.width = (parseFloat(currentStyles.width) + adjustValue) + 'px'
-        searchBarRef.current.style.maxWidth = (parseFloat(currentStyles.width) + adjustValue) + 'px'
-        // searchBarRef.current.style.left = (parseFloat(currentStyles.left) + adjustValue) + 'px'
+        console.log('adjusting width:', (currWidth + adjustValue) + 'px')
+        searchBarRef.current.style.width = (currWidth + adjustValue) + 'px'
+        searchBarRef.current.style.maxWidth = (currWidth + adjustValue) + 'px'
+        // searchBarRef.current.style.left = currLeft + adjustValue) + 'px'
         setIsWidthAdjusted(true)
         return
       }
       if (isWidthAdjusted.current) {
-        console.log('adjusting width:', (parseFloat(currentStyles.width) - adjustValue) + 'px')
-        searchBarRef.current.style.width = (parseFloat(currentStyles.width) - adjustValue) + 'px'
-        searchBarRef.current.style.maxWidth = (parseFloat(currentStyles.width) - adjustValue) + 'px'
-        // searchBarRef.current.style.left = (parseFloat(currentStyles.left) - adjustValue) + 'px'
+        console.log('adjusting width:', (currWidth - adjustValue) + 'px')
+        searchBarRef.current.style.width = (currWidth - adjustValue) + 'px'
+        searchBarRef.current.style.maxWidth = (currWidth - adjustValue) + 'px'
+        // searchBarRef.current.style.left = currLeft - adjustValue) + 'px'
         setIsWidthAdjusted(false)
       }
     }
