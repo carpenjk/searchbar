@@ -148,10 +148,10 @@ const SearchBarContainer = (props) => {
         return
       }
       if (isWidthAdjusted.current) {
+        console.log('adjusting width:', (parseFloat(currentStyles.width) - adjustValue) + 'px')
         searchBarRef.current.style.width = (parseFloat(currentStyles.width) - adjustValue) + 'px'
         searchBarRef.current.style.maxWidth = (parseFloat(currentStyles.width) - adjustValue) + 'px'
         searchBarRef.current.style.left = (parseFloat(currentStyles.left) - adjustValue) + 'px'
-        console.log('adjusting width:', (parseFloat(currentStyles.width) - adjustValue) + 'px')
         setIsWidthAdjusted(false)
       }
     }
