@@ -127,7 +127,6 @@ const SearchBarContainer = (props) => {
   const scrollElement = menuContainerRef?.current
   const theme = useTheme()
   const isWidthAdjusted = useRef(false)
-  console.log('🚀 ~ file: SearchBarContainer.jsx:130 ~ SearchBarContainer ~ isWidthAdjusted', isWidthAdjusted)
 
   const adjustWidth = useCallback((needsAdjust) => {
     const setIsWidthAdjusted = (bln) => {
@@ -138,17 +137,15 @@ const SearchBarContainer = (props) => {
     const adjustValue = parseInt(getPaddingRight({}, 8)({ theme, tw: mergedTW }))
     if (needsAdjust && !isWidthAdjusted.current) {
       if (searchBarRef?.current) {
-        debugger
         console.log('adjusting width:', (currWidth + adjustValue) + 'px')
         searchBarRef.current.style.width = (currWidth + adjustValue) + 'px'
-        searchBarRef.current.style.maxwidth = (currWidth + adjustValue) + 'px'
+        searchBarRef.current.style.maxWidth = (currWidth + adjustValue) + 'px'
         setIsWidthAdjusted(true)
       }
       return
     }
     if (searchBarRef?.current) {
       if (isWidthAdjusted.current) {
-        debugger
         searchBarRef.current.style.width = (currWidth - adjustValue) + 'px'
         searchBarRef.current.style.maxWidth = (currWidth - adjustValue) + 'px'
         console.log('adjusting width:', (currWidth - adjustValue) + 'px')
@@ -157,7 +154,6 @@ const SearchBarContainer = (props) => {
     }
   }, [])
 
-  console.log('🚀 ~ file: SearchBarContainer.jsx:155 ~ SearchBarContainer ~ adjustWidth', adjustWidth)
   const hasVerticalScrollbar = useHasVerticalScrollbar(scrollElement, [isOpen, isSecondaryOpen, isFiltersOpen], adjustWidth)
 
   return (
