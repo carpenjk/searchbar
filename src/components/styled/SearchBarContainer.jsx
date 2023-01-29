@@ -133,22 +133,25 @@ const SearchBarContainer = (props) => {
       isWidthAdjusted.current = bln
     }
     console.log('adjustWidth start')
-    const currWidth = searchBarRef?.current?.clientWidth
-    const adjustValue = parseInt(getPaddingRight({}, 8)({ theme, tw: mergedTW }))
-    if (needsAdjust && !isWidthAdjusted.current) {
-      if (searchBarRef?.current) {
-        console.log('adjusting width:', (currWidth + adjustValue) + 'px')
-        searchBarRef.current.style.width = (currWidth + adjustValue) + 'px'
-        searchBarRef.current.style.maxWidth = (currWidth + adjustValue) + 'px'
+    if (searchBarRef.current) {
+      const currentStyles = searchBarRef?.current ? window?.getComputedStyle(searchBarRef.current) : undefined
+      console.log('🚀 ~ file: SearchBarContainer.jsx:138 ~ adjustWidth ~ currentStyles', currentStyles)
+      // const currWidth = currentStyles.clientWidth
+      // const currLeft = currentStyles.left
+      const adjustValue = parseInt(getPaddingRight({}, 8)({ theme, tw: mergedTW }))
+      if (needsAdjust && !isWidthAdjusted.current) {
+        console.log('adjusting width:', (currentStyles.width + adjustValue) + 'px')
+        searchBarRef.current.style.width = (currentStyles.width + adjustValue) + 'px'
+        searchBarRef.current.style.maxWidth = (currentStyles.width + adjustValue) + 'px'
+        searchBarRef.current.style.left = (currentStyles.left + adjustValue) + 'px'
         setIsWidthAdjusted(true)
+        return
       }
-      return
-    }
-    if (searchBarRef?.current) {
       if (isWidthAdjusted.current) {
-        searchBarRef.current.style.width = (currWidth - adjustValue) + 'px'
-        searchBarRef.current.style.maxWidth = (currWidth - adjustValue) + 'px'
-        console.log('adjusting width:', (currWidth - adjustValue) + 'px')
+        searchBarRef.current.style.width = (currentStyles.width - adjustValue) + 'px'
+        searchBarRef.current.style.maxWidth = (currentStyles.width - adjustValue) + 'px'
+        searchBarRef.current.style.left = (currentStyles.left - adjustValue) + 'px'
+        console.log('adjusting width:', (currentStyles.width - adjustValue) + 'px')
         setIsWidthAdjusted(false)
       }
     }
