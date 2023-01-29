@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 import styled, { useTheme } from 'styled-components'
 
 import {
@@ -126,9 +126,13 @@ const SearchBarContainer = (props) => {
   const mergedTW = { ...DEFAULT_TW, ...tw }
   const scrollElement = menuContainerRef?.current
   const theme = useTheme()
-  const [isWidthAdjusted, setIsWidthAdjusted] = useState(false)
+  const isWidthAdjusted = useRef(false)
+  console.log('🚀 ~ file: SearchBarContainer.jsx:130 ~ SearchBarContainer ~ isWidthAdjusted', isWidthAdjusted)
 
   const adjustWidth = useCallback((needsAdjust) => {
+    const setIsWidthAdjusted = (bln) => {
+      isWidthAdjusted.current = bln
+    }
     console.log('adjustWidth start')
     const currWidth = searchBarRef?.current?.clientWidth
     const adjustValue = parseInt(getPaddingRight({}, 8)({ theme, tw: mergedTW }))
