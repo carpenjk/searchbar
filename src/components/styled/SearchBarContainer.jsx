@@ -186,6 +186,7 @@ const SearchBarContainer = (props) => {
       offsetTop={offsetTop}
       hide={isHidden}
       ref={searchBarRef}
+      hasVerticalScrollbar={hasVerticalScrollbar}
     >
       {children}
     </StyledSearchBar>
