@@ -141,6 +141,7 @@ const SearchBarContainer = (props) => {
       }
       return
     }
+    console.log('🚀 ~ file: SearchBarContainer.jsx:145 ~ adjustWidth ~ searchBarRef', searchBarRef)
     if (searchBarRef?.current) {
       if (isWidthAdjusted) {
         searchBarRef.current.style.width = (currWidth - adjustValue) + 'px'
