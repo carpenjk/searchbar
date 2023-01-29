@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 const useHasVerticalScrollbar = (elem, deps, onChange) => {
-  console.log('useHasVerticalScrollbar onChange', onchange)
+  console.log('useHasVerticalScrollbar onChange', onChange)
   const [hasScrollbar, setHasScrollbar] = useState(false)
   const prevHasScrollbar = useRef(hasScrollbar)
   const _deps = deps ? [...deps] : []
