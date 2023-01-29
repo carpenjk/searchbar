@@ -11,6 +11,9 @@
     "release": "standard-version",
     "semantic-release": "semantic-release"
   },
+  "eslintConfig": {
+    "extends": "eslint-config-strict-mode"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/carpenjk/searchbar.git"
@@ -42,13 +45,14 @@
     "eslint-plugin-n": "^15.2.4",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.30.1",
+    "eslint-config-strict-mode": "^1.2.1",
     "rimraf": "^3.0.2",
     "semantic-release": "^19.0.5"
   },
   "peerDependencies": {
     "@carpenjk/prop-x": "^3.0.1 || ^2.0.0",
-    "@carpenjk/use-breakpoints": "^1.0.0",
     "@carpenjk/themeweaver": "^1.0.2",
+    "@carpenjk/use-breakpoints": "^1.0.0",
     "formik": "^2.2.9",
     "react": "17 - 18",
     "react-dom": "17 - 18",
