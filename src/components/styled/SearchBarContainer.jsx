@@ -138,6 +138,7 @@ const SearchBarContainer = (props) => {
     const adjustValue = parseInt(getPaddingRight({}, 8)({ theme, tw: mergedTW }))
     if (needsAdjust && !isWidthAdjusted.current) {
       if (searchBarRef?.current) {
+        debugger
         console.log('adjusting width:', (currWidth + adjustValue) + 'px')
         searchBarRef.current.style.width = (currWidth + adjustValue) + 'px'
         searchBarRef.current.style.maxwidth = (currWidth + adjustValue) + 'px'
@@ -145,9 +146,9 @@ const SearchBarContainer = (props) => {
       }
       return
     }
-    console.log('🚀 ~ file: SearchBarContainer.jsx:145 ~ adjustWidth ~ searchBarRef', searchBarRef)
     if (searchBarRef?.current) {
       if (isWidthAdjusted.current) {
+        debugger
         searchBarRef.current.style.width = (currWidth - adjustValue) + 'px'
         searchBarRef.current.style.maxWidth = (currWidth - adjustValue) + 'px'
         console.log('adjusting width:', (currWidth - adjustValue) + 'px')
