@@ -136,7 +136,7 @@ const SearchBarContainer = (props) => {
     if (searchBarRef.current) {
       const currentStyles = searchBarRef?.current ? window?.getComputedStyle(searchBarRef.current) : undefined
       console.log('🚀 ~ file: SearchBarContainer.jsx:138 ~ adjustWidth ~ currentStyles', currentStyles)
-      const currWidth = parseFloat(currentStyles.clientWidth)
+      const currWidth = parseFloat(currentStyles.width)
       const currLeft = parseFloat(currentStyles.left)
       const adjustValue = parseInt(getPaddingRight({}, 8)({ theme, tw: mergedTW }))
       if (needsAdjust && !isWidthAdjusted.current) {
