@@ -118,12 +118,7 @@ const StyledSearchBar = styled.div`
       max-height: ${getMaxHeight({ suffix: '-isFiltersOpen' })};
     `}
     ${condition('hasVerticalScrollbar')`
-      ${console.log('hasVerticalScrollbar')}
       padding-right: 0px;
-      width: calc(${getWidth({}, 'auto')} + ${getPaddingRight({}, '8px')});
-      width: calc(${getWidth({ suffix: 'isOpen' })} + ${getPaddingRight({})});
-      width: calc(${getWidth({ suffix: 'isSecondaryOpen' })} + ${getPaddingRight({})});
-      width: calc(${getWidth({ suffix: 'isFiltersOpen' })} + ${getPaddingRight({})});
     `}
     
 `}
