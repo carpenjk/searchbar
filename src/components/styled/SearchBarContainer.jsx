@@ -94,10 +94,7 @@ const StyledSearchBar = styled.div`
       display: none;
     `}
     
-    ${condition('hasVerticalScrollbar')`
-      padding-right: 0px;
-      background-color: red;
-    `}
+    
 
     ${condition('isSecondaryOpen')`
         background-color: ${getBackgroundColor({ suffix: '-isSecondaryOpen' }, '#F6FEFF')};
@@ -106,8 +103,12 @@ const StyledSearchBar = styled.div`
         max-width: ${getMaxWidth({ suffix: '-isSecondaryOpen' })};
         max-height: ${getMaxHeight({ suffix: '-isSecondaryOpen' })};
         background-color: yellow;
-      `}
+    `}
 
+    ${condition('hasVerticalScrollbar')`
+      padding-right: 0px;
+      background-color: red;
+    `}
   
     ${condition('isOpen')`
       background-color: ${getBackgroundColor({ suffix: '-isOpen' }, '#F6FEFF')};
