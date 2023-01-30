@@ -158,8 +158,8 @@ const SearchBarContainer = (props) => {
       if (isWidthAdjusted.current) {
         console.log('adjusting width:', (currWidth - adjustValue) + 'px')
         searchBarRef.current.style.paddingRight = `${adjustValue}px`
-        searchBarRef.current.style.width = (currWidth - adjustValue) + 'px'
-        searchBarRef.current.style.maxWidth = (currWidth - adjustValue) + 'px'
+        // searchBarRef.current.style.width = (currWidth - adjustValue) + 'px'
+        // searchBarRef.current.style.maxWidth = (currWidth - adjustValue) + 'px'
         // searchBarRef.current.style.left = (currLeft - adjustValue) + 'px'
         setIsWidthAdjusted(false)
       }
