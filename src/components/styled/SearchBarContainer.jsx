@@ -65,7 +65,7 @@ const StyledSearchBar = styled.div`
     background-color: ${getBackgroundColor({ suffix: '-isFiltersOpen' }, '#F6FEFF')};
     width: ${getWidth({ suffix: '-isFiltersOpen' })};
     height: ${getHeight({ suffix: '-isFiltersOpen' })};
-    max-width: ${getMaxWidth({ suffix: '-isFiltersOpen' })}};
+    max-width: ${getMaxWidth({ suffix: '-isFiltersOpen' })};
     max-height: ${getMaxHeight({ suffix: '-isFiltersOpen' })};
   `} 
 
