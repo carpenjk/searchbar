@@ -71,7 +71,7 @@ const StyledSearchBar = styled.div`
 
   ${condition('hasVerticalScrollbar')`
       padding-right: 0px;
-      width: calc(${getWidth({}, '90vw')} + ${getPaddingRight({}, )});
+      width: calc(${getWidth({}, '90vw')} + ${getPaddingRight({})});
   `}
 
   ${breakpoint(1)`
@@ -141,36 +141,36 @@ const SearchBarContainer = (props) => {
   const [isWidthAdjusted, setIsWidthAdjusted] = useState(false)
   const [CSSAdjustment, setCSSAdjustment] = useState('')
 
-  const adjustWidth = useCallback((needsAdjust) => {
-    // const setIsWidthAdjusted = (bln) => {
-    //   isWidthAdjusted.current = bln
-    // }
-    console.log('adjustWidth start')
-    if (searchBarRef.current) {
-      const currentStyles = searchBarRef?.current ? window?.getComputedStyle(searchBarRef.current) : undefined
-      console.log('🚀 ~ file: SearchBarContainer.jsx:138 ~ adjustWidth ~ currentStyles', currentStyles)
-      const currWidth = parseFloat(currentStyles.width)
-      const currLeft = parseFloat(currentStyles.left)
-      const adjustValue0 = parseFloat(getPaddingRight({}, 8)({ theme, tw: mergedTW })(0))
-      const adjustValue1 = parseFloat(getPaddingRight({}, 8)({ theme, tw: mergedTW })(1))
-      const adjustedWidth0 = !Number.isNaN(adjustValue0) ? `calc(${adjustValue0}px)`
-      if (needsAdjust && !isWidthAdjusted.current) {
-        // searchBarRef.current.style.paddingRight = '0px'
-        // searchBarRef.current.style.width = (currWidth + adjustValue) + 'px'
-        // searchBarRef.current.style.maxWidth = (currWidth + adjustValue) + 'px'
-        // searchBarRef.current.style.left = currentStyles.left
-        setIsWidthAdjusted(true)
-        return
-      }
-      if (isWidthAdjusted.current) {
-        // searchBarRef.current.style.paddingRight = `${adjustValue}px`
-        // searchBarRef.current.style.width = (currWidth - adjustValue) + 'px'
-        // searchBarRef.current.style.maxWidth = (currWidth - adjustValue) + 'px'
-        // searchBarRef.current.style.left = (currLeft - adjustValue) + 'px'
-        setIsWidthAdjusted(false)
-      }
-    }
-  }, [])
+  // const adjustWidth = useCallback((needsAdjust) => {
+  //   // const setIsWidthAdjusted = (bln) => {
+  //   //   isWidthAdjusted.current = bln
+  //   // }
+  //   console.log('adjustWidth start')
+  //   if (searchBarRef.current) {
+  //     const currentStyles = searchBarRef?.current ? window?.getComputedStyle(searchBarRef.current) : undefined
+  //     console.log('🚀 ~ file: SearchBarContainer.jsx:138 ~ adjustWidth ~ currentStyles', currentStyles)
+  //     const currWidth = parseFloat(currentStyles.width)
+  //     const currLeft = parseFloat(currentStyles.left)
+  //     const adjustValue0 = parseFloat(getPaddingRight({}, 8)({ theme, tw: mergedTW })(0))
+  //     const adjustValue1 = parseFloat(getPaddingRight({}, 8)({ theme, tw: mergedTW })(1))
+  //     const adjustedWidth0 = !Number.isNaN(adjustValue0) ? `calc(${adjustValue0}px)`
+  //     if (needsAdjust && !isWidthAdjusted.current) {
+  //       // searchBarRef.current.style.paddingRight = '0px'
+  //       // searchBarRef.current.style.width = (currWidth + adjustValue) + 'px'
+  //       // searchBarRef.current.style.maxWidth = (currWidth + adjustValue) + 'px'
+  //       // searchBarRef.current.style.left = currentStyles.left
+  //       setIsWidthAdjusted(true)
+  //       return
+  //     }
+  //     if (isWidthAdjusted.current) {
+  //       // searchBarRef.current.style.paddingRight = `${adjustValue}px`
+  //       // searchBarRef.current.style.width = (currWidth - adjustValue) + 'px'
+  //       // searchBarRef.current.style.maxWidth = (currWidth - adjustValue) + 'px'
+  //       // searchBarRef.current.style.left = (currLeft - adjustValue) + 'px'
+  //       setIsWidthAdjusted(false)
+  //     }
+  //   }
+  // }, [])
 
   const hasVerticalScrollbar = useHasVerticalScrollbar(scrollElement, [isOpen, isSecondaryOpen, isFiltersOpen])
 
