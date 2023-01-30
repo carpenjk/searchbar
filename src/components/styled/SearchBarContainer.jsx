@@ -125,9 +125,19 @@ const StyledSearchBar = styled.div`
 
     ${condition('hasVerticalScrollbar')`
       padding-right: 0px;
+      width: calc(${getWidth({}, 'auto')} + ${getPaddingRight({}, '8px')});
+      width: calc(${getWidth({ suffix: '-isSecondaryOpen' })} + ${getPaddingRight({}, '8px')});
+      width: calc(${getWidth({ suffix: '-isOpen' })} + ${getPaddingRight({}, '8px')});
+      width: calc(${getWidth({ suffix: '-isFiltersOpen' })} + ${getPaddingRight({}, '8px')});
+      width: calc(${getWidth({ suffix: '-hasVerticalScrollbar' })} + ${getPaddingRight({}, '8px')});
+      max-width: calc(${getMaxWidth({}, 'none')} + ${getPaddingRight({}, '8px')});
+      max-width: calc(${getMaxWidth({ suffix: '-isSecondaryOpen' })} + ${getPaddingRight({}, '8px')});
+      max-width: calc(${getMaxWidth({ suffix: '-isOpen' })} + ${getPaddingRight({}, '8px')});
+      max-width: calc(${getMaxWidth({ suffix: '-isFiltersOpen' })} + ${getPaddingRight({}, '8px')});
+      max-width: calc(${getMaxWidth({ suffix: '-hasVerticalScrollbar' })} + ${getPaddingRight({}, '8px')});
       background-color: red;
     `}
-    
+
 `}
 `
 
