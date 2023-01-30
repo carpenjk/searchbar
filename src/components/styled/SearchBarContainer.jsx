@@ -8,7 +8,10 @@ import {
   getMaxHeight,
   getMaxWidth,
   getHeight,
-  getPaddingRight
+  getPaddingRight,
+  getPaddingTop,
+  getPaddingLeft,
+  getPaddingBottom
 } from '@carpenjk/themeweaver'
 import { breakpoint, condition, getProp } from '@carpenjk/prop-x/css'
 import useHasVerticalScrollbar from '../hooks/useHasVerticalScrollbar'
@@ -30,6 +33,10 @@ const StyledSearchBar = styled.div`
   max-height: ${getMaxHeight({}, '82vh')};
   max-width: ${getMaxWidth({}, 'none')};
   z-index: 999999;
+  padding-top: ${getPaddingTop({}, '8px')};
+  padding-right: ${getPaddingRight({}, '8px')};
+  padding-bottom: ${getPaddingBottom({}, '8px')};
+  padding-left: ${getPaddingLeft({}, '8px')};
 
   ${condition('hide')`
     display: none;
@@ -141,14 +148,16 @@ const SearchBarContainer = (props) => {
       const adjustValue = parseInt(getPaddingRight({}, 8)({ theme, tw: mergedTW }))
       if (needsAdjust && !isWidthAdjusted.current) {
         console.log('adjusting width:', (currWidth + adjustValue) + 'px')
-        searchBarRef.current.style.width = (currWidth + adjustValue) + 'px'
-        searchBarRef.current.style.maxWidth = (currWidth + adjustValue) + 'px'
-        searchBarRef.current.style.left = `calc(50% + ${adjustValue / 2}px`
+        searchBarRef.current.style.paddingRight = '0px'
+        // searchBarRef.current.style.width = (currWidth + adjustValue) + 'px'
+        // searchBarRef.current.style.maxWidth = (currWidth + adjustValue) + 'px'
+        // searchBarRef.current.style.left = currentStyles.left
         setIsWidthAdjusted(true)
         return
       }
       if (isWidthAdjusted.current) {
         console.log('adjusting width:', (currWidth - adjustValue) + 'px')
+        searchBarRef.current.style.paddingRight = `${adjustValue}px`
         searchBarRef.current.style.width = (currWidth - adjustValue) + 'px'
         searchBarRef.current.style.maxWidth = (currWidth - adjustValue) + 'px'
         // searchBarRef.current.style.left = (currLeft - adjustValue) + 'px'

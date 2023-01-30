@@ -118,7 +118,7 @@ const SearchBarMenu = (props) => {
           searchBarRef={searchBarRef}
           menuContainerRef={menuContainerRef}
         >
-          <ExpandedBackground
+          {/* <ExpandedBackground
             searchBarRef={searchBarRef}
             menuContainerRef={menuContainerRef}
             isExpanded={showButtons}
@@ -127,7 +127,7 @@ const SearchBarMenu = (props) => {
             isOpen={isOpen}
             isSecondaryOpen={isSecondaryOpen}
             isFiltersOpen={isFiltersOpen}
-          />
+          /> */}
           <MenuContainer
             menuContainerRef={menuContainerRef}
             isFiltersOpen={isFiltersOpen}
