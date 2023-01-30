@@ -99,6 +99,7 @@ const StyledSearchBar = styled.div`
         height: ${getHeight({ suffix: '-isSecondaryOpen' })};
         max-width: ${getMaxWidth({ suffix: '-isSecondaryOpen' })};
         max-height: ${getMaxHeight({ suffix: '-isSecondaryOpen' })};
+        background-color: blue;
       `}
 
   
