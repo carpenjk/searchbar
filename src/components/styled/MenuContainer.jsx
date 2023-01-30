@@ -6,17 +6,17 @@ import { getBackgroundColor, getPaddingBottom, getPaddingLeft, getPaddingRight, 
 const StyledMenuContainer = styled.div`
   overflow-y: visible;
   background-color: ${getBackgroundColor({}, 'initial')};
-  padding-top: ${getPaddingTop({}, '0')};
-  padding-right: ${getPaddingRight({}, '0')};
-  padding-bottom: ${getPaddingBottom({}, '0')};
-  padding-left: ${getPaddingLeft({}, '0')};
+  padding-top: ${getPaddingTop({}, '0px')};
+  padding-right: ${getPaddingRight({}, '0px')};
+  padding-bottom: ${getPaddingBottom({}, '0px')};
+  padding-left: ${getPaddingLeft({}, '0px')};
   ${condition('isFiltersOpen')`
     overflow-y: auto;
     background-color: ${getBackgroundColor({ suffix: '-isFiltersOpen' }, 'initial')};
-    padding-top: ${getPaddingTop({ suffix: '-isFiltersOpen' }, '4px')};
-    padding-right: ${getPaddingRight({ suffix: '-isFiltersOpen' }, '4px')};
-    padding-bottom: ${getPaddingBottom({ suffix: '-isFiltersOpen' }, '4px')};
-    padding-left: ${getPaddingLeft({ suffix: '-isFiltersOpen' }, '4px')};
+    padding-top: ${getPaddingTop({ suffix: '-isFiltersOpen' }, '0px')};
+    padding-right: ${getPaddingRight({ suffix: '-isFiltersOpen' }, '0px')};
+    padding-bottom: ${getPaddingBottom({ suffix: '-isFiltersOpen' }, '0px')};
+    padding-left: ${getPaddingLeft({ suffix: '-isFiltersOpen' }, '0px')};
   `}
 
   ${breakpoint(1)`
