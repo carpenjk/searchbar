@@ -23,6 +23,7 @@ const DEFAULT_OFFSET_TOP_PX = 20
 const SearchBarMenu = (props) => {
   const {
     offsetTop,
+    openMaxWidth,
     checkFilters,
     FilterFields,
     PrimarySearchFields,
@@ -111,6 +112,7 @@ const SearchBarMenu = (props) => {
           isSearchBarFocused={isSearchBarFocused}
           isSecondaryOpen={isSecondaryOpen}
           offsetTop={searchBarOffsetTop}
+          openMaxWidth={openMaxWidth}
           searchBarRef={searchBarRef}
           menuContainerRef={menuContainerRef}
         >
