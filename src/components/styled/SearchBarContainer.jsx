@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import styled, { useTheme } from 'styled-components'
+import React from 'react'
+import styled from 'styled-components'
 
 import {
   getBackgroundColor,
@@ -88,7 +88,6 @@ const StyledSearchBar = styled.div`
     max-width: ${getMaxWidth({}, 'none')};
     max-Height: ${getMaxHeight({}, '82vh')};
     border-radius: ${getBorderRadius({}, '8px')};
-    background-color: brown;
 
     ${condition('hide')`
       display: none;
@@ -102,7 +101,6 @@ const StyledSearchBar = styled.div`
         height: ${getHeight({ suffix: '-isSecondaryOpen' })};
         max-width: ${getMaxWidth({ suffix: '-isSecondaryOpen' })};
         max-height: ${getMaxHeight({ suffix: '-isSecondaryOpen' })};
-        background-color: yellow;
     `}
   
     ${condition('isOpen')`
@@ -111,7 +109,6 @@ const StyledSearchBar = styled.div`
       height: ${getHeight({ suffix: '-isOpen' }, 'auto')};
       max-height: ${getMaxHeight({ suffix: '-isOpen' })};
       max-width: ${getMaxWidth({ suffix: '-isOpen' })};
-      background-color: green;
     `}
 
     ${condition('isFiltersOpen')`
@@ -120,7 +117,6 @@ const StyledSearchBar = styled.div`
       height: ${getHeight({ suffix: '-isFiltersOpen' })};
       max-width: ${getMaxWidth({ suffix: '-isFiltersOpen' })};
       max-height: ${getMaxHeight({ suffix: '-isFiltersOpen' })};
-      background-color: blue;
     `}
 
     ${condition('hasVerticalScrollbar')`
@@ -135,9 +131,7 @@ const StyledSearchBar = styled.div`
       max-width: calc(${getMaxWidth({ suffix: '-isOpen' })} + ${getPaddingRight({}, '8px')});
       max-width: calc(${getMaxWidth({ suffix: '-isFiltersOpen' })} + ${getPaddingRight({}, '8px')});
       max-width: calc(${getMaxWidth({ suffix: '-hasVerticalScrollbar' })} + ${getPaddingRight({}, '8px')});
-      background-color: red;
     `}
-
 `}
 `
 
@@ -164,40 +158,6 @@ const SearchBarContainer = (props) => {
   } = props
   const mergedTW = { ...DEFAULT_TW, ...tw }
   const scrollElement = menuContainerRef?.current
-  const theme = useTheme()
-  const [isWidthAdjusted, setIsWidthAdjusted] = useState(false)
-  const [CSSAdjustment, setCSSAdjustment] = useState('')
-
-  // const adjustWidth = useCallback((needsAdjust) => {
-  //   // const setIsWidthAdjusted = (bln) => {
-  //   //   isWidthAdjusted.current = bln
-  //   // }
-  //   console.log('adjustWidth start')
-  //   if (searchBarRef.current) {
-  //     const currentStyles = searchBarRef?.current ? window?.getComputedStyle(searchBarRef.current) : undefined
-  //     console.log('🚀 ~ file: SearchBarContainer.jsx:138 ~ adjustWidth ~ currentStyles', currentStyles)
-  //     const currWidth = parseFloat(currentStyles.width)
-  //     const currLeft = parseFloat(currentStyles.left)
-  //     const adjustValue0 = parseFloat(getPaddingRight({}, 8)({ theme, tw: mergedTW })(0))
-  //     const adjustValue1 = parseFloat(getPaddingRight({}, 8)({ theme, tw: mergedTW })(1))
-  //     const adjustedWidth0 = !Number.isNaN(adjustValue0) ? `calc(${adjustValue0}px)`
-  //     if (needsAdjust && !isWidthAdjusted.current) {
-  //       // searchBarRef.current.style.paddingRight = '0px'
-  //       // searchBarRef.current.style.width = (currWidth + adjustValue) + 'px'
-  //       // searchBarRef.current.style.maxWidth = (currWidth + adjustValue) + 'px'
-  //       // searchBarRef.current.style.left = currentStyles.left
-  //       setIsWidthAdjusted(true)
-  //       return
-  //     }
-  //     if (isWidthAdjusted.current) {
-  //       // searchBarRef.current.style.paddingRight = `${adjustValue}px`
-  //       // searchBarRef.current.style.width = (currWidth - adjustValue) + 'px'
-  //       // searchBarRef.current.style.maxWidth = (currWidth - adjustValue) + 'px'
-  //       // searchBarRef.current.style.left = (currLeft - adjustValue) + 'px'
-  //       setIsWidthAdjusted(false)
-  //     }
-  //   }
-  // }, [])
 
   const hasVerticalScrollbar = useHasVerticalScrollbar(scrollElement, [isOpen, isSecondaryOpen, isFiltersOpen])
 
@@ -212,7 +172,6 @@ const SearchBarContainer = (props) => {
       hide={isHidden}
       ref={searchBarRef}
       hasVerticalScrollbar={hasVerticalScrollbar}
-      CSSAdjustment={CSSAdjustment}
     >
       {children}
     </StyledSearchBar>
