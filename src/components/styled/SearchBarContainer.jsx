@@ -88,6 +88,7 @@ const StyledSearchBar = styled.div`
     max-width: ${getMaxWidth({}, 'none')};
     max-Height: ${getMaxHeight({}, '82vh')};
     border-radius: ${getBorderRadius({}, '8px')};
+    background-color: brown;
 
     ${condition('hide')`
       display: none;
@@ -99,6 +100,7 @@ const StyledSearchBar = styled.div`
         height: ${getHeight({ suffix: '-isSecondaryOpen' })};
         max-width: ${getMaxWidth({ suffix: '-isSecondaryOpen' })};
         max-height: ${getMaxHeight({ suffix: '-isSecondaryOpen' })};
+        background-color: yellow;
       `}
 
   
@@ -108,6 +110,7 @@ const StyledSearchBar = styled.div`
       height: ${getHeight({ suffix: '-isOpen' }, 'auto')};
       max-height: ${getMaxHeight({ suffix: '-isOpen' })};
       max-width: ${getMaxWidth({ suffix: '-isOpen' })};
+      background-color: green;
     `}
 
     ${condition('isFiltersOpen')`
@@ -116,7 +119,9 @@ const StyledSearchBar = styled.div`
       height: ${getHeight({ suffix: '-isFiltersOpen' })};
       max-width: ${getMaxWidth({ suffix: '-isFiltersOpen' })}};
       max-height: ${getMaxHeight({ suffix: '-isFiltersOpen' })};
+      background-color: blue;
     `}
+
     ${condition('hasVerticalScrollbar')`
       padding-right: 0px;
       background-color: red;
