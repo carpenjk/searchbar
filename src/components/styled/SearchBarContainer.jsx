@@ -93,6 +93,11 @@ const StyledSearchBar = styled.div`
     ${condition('hide')`
       display: none;
     `}
+    
+    ${condition('hasVerticalScrollbar')`
+      padding-right: 0px;
+      background-color: red;
+    `}
 
     ${condition('isSecondaryOpen')`
         background-color: ${getBackgroundColor({ suffix: '-isSecondaryOpen' }, '#F6FEFF')};
@@ -122,10 +127,6 @@ const StyledSearchBar = styled.div`
       background-color: blue;
     `}
 
-    ${condition('hasVerticalScrollbar')`
-      padding-right: 0px;
-      background-color: red;
-    `}
     
 `}
 `
