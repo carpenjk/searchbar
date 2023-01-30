@@ -71,7 +71,7 @@ const StyledSearchBar = styled.div`
 
   ${condition('hasVerticalScrollbar')`
       padding-right: 0px;
-      width: calc(${getWidth({}, '90vw')} + ${getPaddingRight({}, '8')}px);
+      width: calc(${getWidth({}, '90vw')} + ${parseFloat(getPaddingRight({}, '8'))}px);
   `}
 
   ${breakpoint(1)`
