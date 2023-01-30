@@ -99,7 +99,6 @@ const StyledSearchBar = styled.div`
         height: ${getHeight({ suffix: '-isSecondaryOpen' })};
         max-width: ${getMaxWidth({ suffix: '-isSecondaryOpen' })};
         max-height: ${getMaxHeight({ suffix: '-isSecondaryOpen' })};
-        background-color: blue;
       `}
 
   
@@ -120,6 +119,7 @@ const StyledSearchBar = styled.div`
     `}
     ${condition('hasVerticalScrollbar')`
       padding-right: 0px;
+      background-color: red;
     `}
     
 `}
