@@ -72,7 +72,10 @@ const StyledSearchBar = styled.div`
   ${condition('hasVerticalScrollbar')`
       padding-right: 0px;
       width: calc(${getWidth({}, '90vw')} + ${getPaddingRight({}, '8px')});
-  `}
+      width: calc(${getWidth({ suffix: 'isOpen' })} + ${getPaddingRight({}, '8px')});
+      width: calc(${getWidth({ suffix: 'isSecondaryOpen' })} + ${getPaddingRight({}, '8px')});
+      width: calc(${getWidth({ suffix: 'isFiltersOpen' })} + ${getPaddingRight({}, '8px')});
+    `}
 
   ${breakpoint(1)`
     top: ${getProp('offsetTop')}px;
@@ -110,7 +113,15 @@ const StyledSearchBar = styled.div`
       height: ${getHeight({ suffix: '-isFiltersOpen' })};
       max-width: ${getMaxWidth({ suffix: '-isFiltersOpen' })}};
       max-height: ${getMaxHeight({ suffix: '-isFiltersOpen' })};
-    `} 
+    `}
+    ${condition('hasVerticalScrollbar')`
+      padding-right: 0px;
+      width: calc(${getWidth({}, '90vw')} + ${getPaddingRight({}, '8px')});
+      width: calc(${getWidth({ suffix: 'isOpen' })} + ${getPaddingRight({}, '8px')});
+      width: calc(${getWidth({ suffix: 'isSecondaryOpen' })} + ${getPaddingRight({}, '8px')});
+      width: calc(${getWidth({ suffix: 'isFiltersOpen' })} + ${getPaddingRight({}, '8px')});
+    `}
+    
 `}
 `
 
