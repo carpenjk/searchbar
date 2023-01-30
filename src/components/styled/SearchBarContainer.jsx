@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react'
+import React, { useState } from 'react'
 import styled, { useTheme } from 'styled-components'
 
 import {
@@ -26,7 +26,7 @@ const StyledSearchBar = styled.div`
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
   box-sizing: content-box;
-  background-color: transparent;
+  background-color: ${getBackgroundColor({}, 'transparent')};
   border-radius: ${getBorderRadius({}, '8px')};
   width: ${getWidth({}, 'auto')};
   height: ${getHeight({}, 'auto')};
@@ -79,7 +79,10 @@ const StyledSearchBar = styled.div`
 
   ${breakpoint(1)`
     top: ${getProp('offsetTop')}px;
-    padding: 0;
+    padding-top: ${getPaddingTop({}, '8px')};
+    padding-right: ${getPaddingRight({}, '8px')};
+    padding-bottom: ${getPaddingBottom({}, '8px')};
+    padding-left: ${getPaddingLeft({}, '8px')};
     background-color: ${getBackgroundColor({}, '#F6FEFF')};
     width: ${getWidth({}, 'auto')};
     max-width: ${getMaxWidth({}, 'none')};
