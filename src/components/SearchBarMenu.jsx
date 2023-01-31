@@ -26,7 +26,8 @@ const SearchBarMenu = (props) => {
     checkFilters,
     FilterFields,
     PrimarySearchFields,
-    SecondarySearchFields
+    SecondarySearchFields,
+    searchBarId
   } = props
   //* context *********************************************************
 
@@ -105,6 +106,7 @@ const SearchBarMenu = (props) => {
       {isOpen && !isHidden && <PopupModal isOpen={isOpen} lockScroll />}
       <Form autoComplete="off">
         <SearchBarContainer
+          searchBarId={searchBarId}
           isHidden={isHidden}
           isOpen={isOpen}
           isFiltersOpen={isFiltersOpen}

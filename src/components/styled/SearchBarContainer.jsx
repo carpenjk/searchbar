@@ -154,6 +154,7 @@ const SearchBarContainer = (props) => {
     offsetTop,
     tw,
     searchBarRef,
+    searchBarId,
     menuContainerRef
   } = props
   const mergedTW = { ...DEFAULT_TW, ...tw }
@@ -163,6 +164,7 @@ const SearchBarContainer = (props) => {
 
   return (
     <StyledSearchBar
+      searchBarId={searchBarId}
       tw={mergedTW}
       isOpen={isOpen}
       isFiltersOpen={isFiltersOpen}
