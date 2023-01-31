@@ -164,7 +164,7 @@ const SearchBarContainer = (props) => {
 
   return (
     <StyledSearchBar
-      searchBarId={searchBarId}
+      id={searchBarId}
       tw={mergedTW}
       isOpen={isOpen}
       isFiltersOpen={isFiltersOpen}
