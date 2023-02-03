@@ -18,16 +18,36 @@ const useHasVerticalScrollbar = (elem, deps, onScrollbarChange, onChange) => {
       if (onChange && typeof onChange === 'function') {
         onChange(hasScrollbar)
       }
-      const newHasScrollbar = elem.scrollHeight > elem.clientHeight
-      setHasScrollbar(newHasScrollbar)
-      if (prevHasScrollbar.current !== newHasScrollbar && typeof onScrollbarChange === 'function') {
-        onScrollbarChange(newHasScrollbar)
-      }
-      prevHasScrollbar.current = newHasScrollbar
+
+      // const newHasScrollbar = elem.scrollHeight > elem.clientHeight
+      // setHasScrollbar(newHasScrollbar)
+      // if (prevHasScrollbar.current !== newHasScrollbar && typeof onScrollbarChange === 'function') {
+      //   onScrollbarChange(newHasScrollbar)
+      // }
+      // prevHasScrollbar.current = newHasScrollbar
     }
-    window.addEventListener('resize', calcHasScrollbar)
+    const ro = new ResizeObserver(entries => {
+      for (const entry of entries) {
+        console.log('🚀 ~ file: useHasVerticalScrollbar.js:23 ~ ro ~ entry', entry)
+        const newHasScrollbar = entry.target.scrollHeight > entry.target.clientHeight
+        setHasScrollbar(newHasScrollbar)
+        if (prevHasScrollbar.current !== newHasScrollbar && typeof onScrollbarChange === 'function') {
+          onScrollbarChange(newHasScrollbar)
+        }
+        prevHasScrollbar.current = newHasScrollbar
+      }
+    })
+
+    // Observe one or multiple elements
+    ro.observe(elem)
     calcHasScrollbar()
-    return () => window.removeEventListener('resize', calcHasScrollbar)
+    return () => {
+      if (elem) {
+        ro.unobserve(elem)
+      } else {
+        ro.disconnect()
+      }
+    }
   }, [elem, onScrollbarChange, ..._deps])
 
   return (hasScrollbar)
