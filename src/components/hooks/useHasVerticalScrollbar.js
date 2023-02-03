@@ -7,10 +7,10 @@ const useHasVerticalScrollbar = (elem, deps, onScrollbarChange, onChange) => {
 
   useEffect(() => {
     const calcHasScrollbar = (el) => {
-      const elStyles = window?.getComputedStyle(el)
+      const elMaxHeight = parseFloat(window?.getComputedStyle(el).getPropertyValue('max-height'))
       const isBiggerThanContainer = el.scrollHeight > el.clientHeight
-      const newHasScrollbar = elStyles
-        ? isBiggerThanContainer && parseFloat(el.scrollHeight) > elStyles.getPropertyValue('max-height')
+      const newHasScrollbar = elMaxHeight
+        ? isBiggerThanContainer && parseFloat(el.scrollHeight) > elMaxHeight
         : isBiggerThanContainer
 
       setHasScrollbar(newHasScrollbar)
