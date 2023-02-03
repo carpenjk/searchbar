@@ -1,16 +1,16 @@
 import { useEffect, useRef, useState } from 'react'
 
-const useHasVerticalScrollbar = (elem, deps, onScrollbarChange, onChange) => {
+const useHasVerticalScrollbar = ({ scrollElement, containerElement, deps, onScrollbarChange, onChange }) => {
   const [hasScrollbar, setHasScrollbar] = useState(false)
   const prevHasScrollbar = useRef(hasScrollbar)
   const _deps = deps ? [...deps] : []
 
   useEffect(() => {
     const calcHasScrollbar = (el) => {
-      const elMaxHeight = parseFloat(window?.getComputedStyle(el).getPropertyValue('max-height'))
+      const containerMaxHeight = parseFloat(window?.getComputedStyle(containerElement).getPropertyValue('max-height'))
       const isBiggerThanContainer = el.scrollHeight > el.clientHeight
-      const newHasScrollbar = elMaxHeight
-        ? isBiggerThanContainer && parseFloat(el.scrollHeight) > elMaxHeight
+      const newHasScrollbar = containerMaxHeight
+        ? isBiggerThanContainer && parseFloat(el.scrollHeight) > containerMaxHeight
         : isBiggerThanContainer
 
       setHasScrollbar(newHasScrollbar)
@@ -21,7 +21,7 @@ const useHasVerticalScrollbar = (elem, deps, onScrollbarChange, onChange) => {
     }
 
     // no observer needed until elem exists
-    if (!elem) {
+    if (!scrollElement) {
       setHasScrollbar(false)
       if (prevHasScrollbar.current !== false && typeof onScrollbarChange === 'function') {
         onScrollbarChange(false)
@@ -40,16 +40,16 @@ const useHasVerticalScrollbar = (elem, deps, onScrollbarChange, onChange) => {
     })
 
     // Observe one or multiple elements
-    ro.observe(elem)
-    calcHasScrollbar(elem)
+    ro.observe(scrollElement)
+    calcHasScrollbar(scrollElement)
     return () => {
-      if (elem) {
-        ro.unobserve(elem)
+      if (scrollElement) {
+        ro.unobserve(scrollElement)
       } else {
         ro.disconnect()
       }
     }
-  }, [elem, onScrollbarChange, ..._deps])
+  }, [scrollElement, onScrollbarChange, ..._deps])
 
   return (hasScrollbar)
 }

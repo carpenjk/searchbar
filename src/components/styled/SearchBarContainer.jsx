@@ -159,8 +159,9 @@ const SearchBarContainer = (props) => {
   } = props
   const mergedTW = { ...DEFAULT_TW, ...tw }
   const scrollElement = menuContainerRef?.current
+  const containerElement = searchBarRef?.current
 
-  const hasVerticalScrollbar = useHasVerticalScrollbar(scrollElement, [isOpen, isSecondaryOpen, isFiltersOpen])
+  const hasVerticalScrollbar = useHasVerticalScrollbar({ scrollElement, containerElement, deps: [isOpen, isSecondaryOpen, isFiltersOpen] })
 
   return (
     <StyledSearchBar
