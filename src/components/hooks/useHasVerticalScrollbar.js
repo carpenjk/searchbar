@@ -6,35 +6,32 @@ const useHasVerticalScrollbar = (elem, deps, onScrollbarChange, onChange) => {
   const _deps = deps ? [...deps] : []
 
   useEffect(() => {
-    const calcHasScrollbar = () => {
-      if (!elem) {
-        setHasScrollbar(false)
-        if (prevHasScrollbar.current !== false && typeof onScrollbarChange === 'function') {
-          onScrollbarChange(false)
-        }
-        prevHasScrollbar.current = false
-        return
+    const calcHasScrollbar = (el) => {
+      const newHasScrollbar = el.target.scrollHeight > el.target.clientHeight
+      setHasScrollbar(newHasScrollbar)
+      if (prevHasScrollbar.current !== newHasScrollbar && typeof onScrollbarChange === 'function') {
+        onScrollbarChange(newHasScrollbar)
       }
-      if (onChange && typeof onChange === 'function') {
-        onChange(hasScrollbar)
-      }
-
-      // const newHasScrollbar = elem.scrollHeight > elem.clientHeight
-      // setHasScrollbar(newHasScrollbar)
-      // if (prevHasScrollbar.current !== newHasScrollbar && typeof onScrollbarChange === 'function') {
-      //   onScrollbarChange(newHasScrollbar)
-      // }
-      // prevHasScrollbar.current = newHasScrollbar
+      prevHasScrollbar.current = newHasScrollbar
     }
+
+    // no observer needed until elem exists
+    if (!elem) {
+      setHasScrollbar(false)
+      if (prevHasScrollbar.current !== false && typeof onScrollbarChange === 'function') {
+        onScrollbarChange(false)
+      }
+      prevHasScrollbar.current = false
+      return
+    }
+    if (onChange && typeof onChange === 'function') {
+      onChange(hasScrollbar)
+    }
+
     const ro = new ResizeObserver(entries => {
       for (const entry of entries) {
         console.log('🚀 ~ file: useHasVerticalScrollbar.js:23 ~ ro ~ entry', entry)
-        const newHasScrollbar = entry.target.scrollHeight > entry.target.clientHeight
-        setHasScrollbar(newHasScrollbar)
-        if (prevHasScrollbar.current !== newHasScrollbar && typeof onScrollbarChange === 'function') {
-          onScrollbarChange(newHasScrollbar)
-        }
-        prevHasScrollbar.current = newHasScrollbar
+        calcHasScrollbar(entry.target)
       }
     })
 
