@@ -7,7 +7,12 @@ const useHasVerticalScrollbar = (elem, deps, onScrollbarChange, onChange) => {
 
   useEffect(() => {
     const calcHasScrollbar = (el) => {
-      const newHasScrollbar = el.target.scrollHeight > el.target.clientHeight
+      const elStyles = window?.getComputedStyle(el)
+      const isBiggerThanContainer = el.scrollHeight > el.clientHeight
+      const newHasScrollbar = elStyles
+        ? isBiggerThanContainer && parseFloat(el.scrollHeight) > elStyles.getPropertyValue('max-height')
+        : isBiggerThanContainer
+
       setHasScrollbar(newHasScrollbar)
       if (prevHasScrollbar.current !== newHasScrollbar && typeof onScrollbarChange === 'function') {
         onScrollbarChange(newHasScrollbar)
@@ -30,14 +35,13 @@ const useHasVerticalScrollbar = (elem, deps, onScrollbarChange, onChange) => {
 
     const ro = new ResizeObserver(entries => {
       for (const entry of entries) {
-        console.log('🚀 ~ file: useHasVerticalScrollbar.js:23 ~ ro ~ entry', entry)
         calcHasScrollbar(entry.target)
       }
     })
 
     // Observe one or multiple elements
     ro.observe(elem)
-    calcHasScrollbar()
+    calcHasScrollbar(elem)
     return () => {
       if (elem) {
         ro.unobserve(elem)
