@@ -161,7 +161,7 @@ const SearchBarContainer = (props) => {
   const scrollElement = menuContainerRef?.current
   const containerElement = searchBarRef?.current
 
-  const hasVerticalScrollbar = useHasVerticalScrollbar({ scrollElement, containerElement, deps: [isOpen, isSecondaryOpen, isFiltersOpen] })
+  const hasVerticalScrollbar = useHasVerticalScrollbar({ scrollElement, containerElement })
 
   return (
     <StyledSearchBar
